@@ -1,0 +1,2 @@
+bnpc.json comes from https://gubal.hasura.app/api/rest/bnpc
+csv comes from https://rl2.perchbird.dev/export.csv
