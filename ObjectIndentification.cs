@@ -292,22 +292,38 @@ internal class ObjectIdentification {
             case ObjectType.Monster: {
                 if (!this._cachedMonsters.TryGetValue(info.PrimaryId, out var names)) {
                     names = this._gameData.GetExcelSheet<ModelChara>()!
-                        .Where(row => row.Type == 3 && row.Model == info.PrimaryId)
+                        .Where(row => row.RowId != 0 && row.Type == 3 && row.Model == info.PrimaryId)
                         .SelectMany(row => {
-                            if (info.PrimaryId < 8000) {
-                                return this._gameData.GetExcelSheet<BNpcBase>()!
-                                    .Where(b => b.ModelChara.Row == row.RowId)
-                                    .SelectMany(b => this._bnpcs.bnpc.Where(bn => bn.bnpcBase == b.RowId))
-                                    .Select(e => this._gameData.GetExcelSheet<BNpcName>()!.GetRow(e.bnpcName)?.Singular.ToDalamudString().TextValue.Trim())
-                                    .Select(name => $"Battle NPC: {name}");
-                            }
-
-                            return this._gameData.GetExcelSheet<Companion>()!
+                            var minions = this._gameData.GetExcelSheet<Companion>()!
                                 .Where(com => com.Model.Row == row.RowId)
                                 .Select(com => com.Singular.ToDalamudString().TextValue.Trim())
-                                .Select(name => $"Minion: {name}");
+                                .Where(name => !string.IsNullOrWhiteSpace(name))
+                                .Select(name => $"Minion: {name}")
+                                .ToHashSet();
+
+                            if (minions.Count > 0) {
+                                return minions;
+                            }
+
+                            var mounts = this._gameData.GetExcelSheet<Mount>()!
+                                .Where(com => com.ModelChara.Row == row.RowId)
+                                .Select(com => com.Singular.ToDalamudString().TextValue.Trim())
+                                .Where(name => !string.IsNullOrWhiteSpace(name))
+                                .Select(name => $"Mount: {name}")
+                                .ToHashSet();
+
+                            if (mounts.Count > 0) {
+                                return mounts;
+                            }
+
+                            var battleNpcs = this._gameData.GetExcelSheet<BNpcBase>()!
+                                .Where(b => b.ModelChara.Row == row.RowId)
+                                .SelectMany(b => this._bnpcs.bnpc.Where(bn => bn.bnpcBase == b.RowId))
+                                .Select(e => this._gameData.GetExcelSheet<BNpcName>()!.GetRow(e.bnpcName)?.Singular.ToDalamudString().TextValue.Trim())
+                                .Where(name => !string.IsNullOrWhiteSpace(name))
+                                .Select(name => $"Battle NPC: {name}");
+                            return battleNpcs;
                         })
-                        .Where(name => !string.IsNullOrWhiteSpace(name))
                         .ToHashSet();
 
                     this._cachedMonsters[info.PrimaryId] = names;
