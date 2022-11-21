@@ -196,8 +196,8 @@ internal class ObjectIdentification {
         }
     }
 
-    private readonly Dictionary<ushort, HashSet<string>> _cachedBNpcs = new();
-    private readonly Dictionary<ushort, HashSet<string>> _cachedMonsters = new();
+    private readonly Dictionary<(FileType, uint[]), HashSet<string>> _cachedBNpcs = new();
+    private readonly Dictionary<(FileType, uint[]), HashSet<string>> _cachedMonsters = new();
 
     private void IdentifyParsed(IDictionary<string, object?> set, GameObjectInfo info) {
         switch (info.ObjectType) {
@@ -272,15 +272,16 @@ internal class ObjectIdentification {
                 break;
             }
             case ObjectType.DemiHuman: {
-                if (!this._cachedBNpcs.TryGetValue(info.PrimaryId, out var names)) {
+                var matchers = ExtractMatchers(info);
+                if (!this._cachedBNpcs.TryGetValue((info.FileType, matchers), out var names)) {
                     names = this._gameData.GetExcelSheet<BNpcBase>()!
-                        .Where(row => row.ModelChara.Value!.Type == 2 && row.ModelChara.Value.Model == info.PrimaryId)
+                        .Where(row => row.ModelChara.Value!.Type == 2 && Matches(row.ModelChara.Value, matchers))
                         .SelectMany(row => this._bnpcs.bnpc.Where(bnpc => bnpc.bnpcBase == row.RowId))
                         .Select(e => this._gameData.GetExcelSheet<BNpcName>()!.GetRow(e.bnpcName)?.Singular.ToDalamudString().TextValue.Trim())
                         .Where(name => !string.IsNullOrWhiteSpace(name))
                         .Cast<string>()
                         .ToHashSet();
-                    this._cachedBNpcs[info.PrimaryId] = names;
+                    this._cachedBNpcs[(info.FileType, matchers)] = names;
                 }
 
                 foreach (var name in names) {
@@ -290,9 +291,10 @@ internal class ObjectIdentification {
                 break;
             }
             case ObjectType.Monster: {
-                if (!this._cachedMonsters.TryGetValue(info.PrimaryId, out var names)) {
+                var matchers = ExtractMatchers(info);
+                if (!this._cachedMonsters.TryGetValue((info.FileType, matchers), out var names)) {
                     names = this._gameData.GetExcelSheet<ModelChara>()!
-                        .Where(row => row.RowId != 0 && row.Type == 3 && row.Model == info.PrimaryId)
+                        .Where(row => row.RowId != 0 && row.Type == 3 && Matches(row, matchers))
                         .SelectMany(row => {
                             var minions = this._gameData.GetExcelSheet<Companion>()!
                                 .Where(com => com.Model.Row == row.RowId)
@@ -326,7 +328,7 @@ internal class ObjectIdentification {
                         })
                         .ToHashSet();
 
-                    this._cachedMonsters[info.PrimaryId] = names;
+                    this._cachedMonsters[(info.FileType, matchers)] = names;
                 }
 
                 foreach (var name in names) {
@@ -364,7 +366,18 @@ internal class ObjectIdentification {
                                                   || info.BodySlot == BodySlot.Unknown
                                                   || info.CustomizationType == CustomizationType.Unknown
                             ? "Customization: Unknown"
-                            : $"Customization: {race} {gender} {info.BodySlot} ({info.CustomizationType}) {info.PrimaryId}";
+                            : $"Customization: {race.ToName()} {gender} {info.BodySlot} ({info.CustomizationType}) {info.PrimaryId}";
+
+                        var isSkel = info.BodySlot == BodySlot.Unknown
+                                     && info.CustomizationType != CustomizationType.Unknown
+                                     && race != ModelRace.Unknown
+                                     && info.FileType == FileType.Skeleton;
+                        if (isSkel) {
+                            // FIXME: met/m0188 surely is an item id, right
+                            // Goatskin Pothelm (Midlander Male Skeleton)
+                            customizationString = $"Customization: {race.ToName()} {gender} {info.CustomizationType} Skeleton";
+                        }
+
                         set[customizationString] = null;
                         break;
                     }
@@ -418,5 +431,45 @@ internal class ObjectIdentification {
                 return begin >= 0 ? this._equipment[begin].Item2.FirstOrDefault() : null;
             }
         }
+    }
+
+    private static uint[] ExtractMatchers(GameObjectInfo info) {
+        var match = info.FileType switch {
+            FileType.Material => 3,
+            FileType.Texture => 3,
+            FileType.Model => 2,
+            FileType.Skeleton => 1,
+            FileType.SkeletonParameter => 1,
+            FileType.ElementId => 1,
+            FileType.SkeletonPhysicsBinary => 1,
+            _ => 0,
+        };
+
+        if (match == 0) {
+            return Array.Empty<uint>();
+        }
+
+        var inQuestion = new uint[] {
+            info.PrimaryId,
+            info.SecondaryId,
+            info.Variant,
+        };
+
+        return inQuestion[..match];
+    }
+
+    private static bool Matches(ModelChara chara, uint[] matchers) {
+        var match = matchers.Length;
+        if (match == 0) {
+            return false;
+        }
+
+        var parts = new uint[] {
+            chara.Model,
+            chara.Base,
+            chara.Variant,
+        };
+
+        return parts[..match].SequenceEqual(matchers);
     }
 }

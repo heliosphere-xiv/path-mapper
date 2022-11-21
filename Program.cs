@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
 using CsvHelper;
@@ -29,11 +30,20 @@ using var csv = new CsvReader(new StreamReader(file), new CsvConfiguration(Cultu
 });
 var allPaths = csv.GetRecords<Record>()
     .Select(record => record.path)
-    .OrderBy(path => path);
+    .OrderBy(path => path)
+    .ToList();
 
 var affects = new Dictionary<string, List<string>>();
+var stopwatch = new Stopwatch();
+stopwatch.Start();
 
-foreach (var path in allPaths) {
+var onePct = (int) Math.Round((float) allPaths.Count / 100);
+for (var i = 0; i < allPaths.Count; i++) {
+    if (i % onePct == 0) {
+        Console.WriteLine($"{(float) i / allPaths.Count * 100:N2}% - {i:N0}/{allPaths.Count:N0}");
+    }
+
+    var path = allPaths[i];
     foreach (var (key, _) in identifier.Identify(path)) {
         if (affects.ContainsKey(path)) {
             affects[path].Add(key);
@@ -42,6 +52,8 @@ foreach (var path in allPaths) {
         }
     }
 }
+
+Console.WriteLine($"processing took {stopwatch.Elapsed}");
 
 await using var output = File.Create(outputPath);
 await JsonSerializer.SerializeAsync(output, affects);

@@ -13,6 +13,10 @@ namespace PathMapper {
         Shader,
         Font,
         Environment,
+        Skeleton,
+        SkeletonParameter,
+        ElementId,
+        SkeletonPhysicsBinary,
     }
 
     public static partial class Names {
@@ -34,6 +38,10 @@ namespace PathMapper {
             { ".shcd", FileType.Shader },
             { ".fdt", FileType.Font },
             { ".envb", FileType.Environment },
+            { ".sklb", FileType.Skeleton },
+            { ".skp", FileType.SkeletonParameter },
+            { ".eid", FileType.ElementId },
+            { ".phyb", FileType.SkeletonPhysicsBinary },
         };
     }
 }

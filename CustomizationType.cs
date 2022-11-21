@@ -3,6 +3,7 @@ using System.ComponentModel;
 namespace PathMapper {
     public enum CustomizationType : byte {
         Unknown,
+        Helmet,
         Body,
         Legs,
         Gloves,
@@ -22,6 +23,7 @@ namespace PathMapper {
     public static class CustomizationTypeEnumExtension {
         public static string ToSuffix(this CustomizationType value) {
             return value switch {
+                CustomizationType.Helmet => "met",
                 CustomizationType.Body => "top",
                 CustomizationType.Legs => "dwn",
                 CustomizationType.Gloves => "glv",
@@ -40,6 +42,7 @@ namespace PathMapper {
 
     public static partial class Names {
         public static readonly Dictionary<string, CustomizationType> SuffixToCustomizationType = new() {
+            { CustomizationType.Helmet.ToSuffix(), CustomizationType.Helmet },
             { CustomizationType.Body.ToSuffix(), CustomizationType.Body },
             { CustomizationType.Legs.ToSuffix(), CustomizationType.Legs },
             { CustomizationType.Gloves.ToSuffix(), CustomizationType.Gloves },
