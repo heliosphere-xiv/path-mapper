@@ -158,7 +158,12 @@ internal class ObjectIdentification {
 
         for (; start < end; ++start) {
             foreach (var item in this._equipment[start].Item2) {
-                set[item.Name.ToString()] = item;
+                var name = item.Name.ToString();
+                if (info.FileType == FileType.Vfx) {
+                    name += " (Vfx)";
+                }
+
+                set[name] = item;
             }
         }
     }
@@ -405,8 +410,10 @@ internal class ObjectIdentification {
         if (path.EndsWith(".pap") || path.EndsWith(".tmb")) {
             this.IdentifyVfx(set, path);
         } else {
-            var info = this._parser.GetFileInfo(path);
-            this.IdentifyParsed(set, info);
+            var infos = this._parser.GetFileInfo(path);
+            foreach (var info in infos) {
+                this.IdentifyParsed(set, info);
+            }
         }
     }
 

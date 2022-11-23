@@ -22,7 +22,7 @@ await using var bnpcFile = File.OpenRead(bnpcJson);
 var bnpcs = (await JsonSerializer.DeserializeAsync<BNpcContainer>(bnpcFile))!;
 
 var gameData = new GameData(gamePath);
-var identifier = new ObjectIdentification(gameData, new GamePathParser(), bnpcs);
+var identifier = new ObjectIdentification(gameData, new GamePathParser(gameData), bnpcs);
 
 await using var file = File.Open(pathsCsv, FileMode.Open);
 using var csv = new CsvReader(new StreamReader(file), new CsvConfiguration(CultureInfo.InvariantCulture) {

@@ -1,10 +1,18 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using Dalamud;
+using Lumina;
+using Lumina.Data.Files;
 
 namespace PathMapper;
 
 internal class GamePathParser {
+    private static GameData _gameData;
+
+    internal GamePathParser(GameData gameData) {
+        _gameData = gameData;
+    }
+
     private const string CharacterFolder = "chara";
     private const string EquipmentFolder = "equipment";
     private const string PlayerFolder = "human";
@@ -131,6 +139,11 @@ internal class GamePathParser {
                 new(@"chara/human/c(?'race'\d{4})/skeleton/(?'type'[a-z]+)/(?'typeabr'[a-z])(?'id'\d{4})/skl_c\k'race'm\k'id'\.sklb", RegexOptions.Compiled),
             },
         },
+        [FileType.Vfx] = new Dictionary<ObjectType, Regex[]> {
+            [ObjectType.Equipment] = new Regex[] {
+                new(@"chara/equipment/e(?'id'\d{4})/vfx/eff/ve(?'effect'\d{4})\.avfx"),
+            },
+        },
     };
 
     public ObjectType PathToObjectType(string path) {
@@ -206,20 +219,59 @@ internal class GamePathParser {
         return extIdx < 0 ? "" : filename[extIdx..];
     }
 
-    private static GameObjectInfo HandleEquipment(FileType fileType, GroupCollection groups) {
+    private static IEnumerable<GameObjectInfo> HandleEquipmentVfx(FileType fileType, GroupCollection groups) {
+        var setId = ushort.Parse(groups["id"].Value);
+        var effectId = ushort.Parse(groups["effect"].Value);
+
+        var imcPath = $"chara/equipment/e{setId:0000}/e{setId:0000}.imc";
+        var imc = _gameData.GetFile<ImcFile>(imcPath)!;
+
+        var variants = new List<(EquipSlot, byte)>();
+        var partIdx = 0;
+        foreach (var part in imc.GetParts()) {
+            var i = 0;
+
+            var slot = partIdx switch {
+                0 => EquipSlot.Head,
+                1 => EquipSlot.Body,
+                2 => EquipSlot.Hands,
+                3 => EquipSlot.Legs,
+                4 => EquipSlot.Feet,
+                _ => throw new ArgumentOutOfRangeException(),
+            };
+
+            foreach (var info in part.Variants) {
+                if (info.VfxId == effectId) {
+                    variants.Add((slot, (byte) i));
+                }
+
+                i += 1;
+            }
+
+            partIdx += 1;
+        }
+
+        return variants.Select(variant => GameObjectInfo.EquipmentVfx(fileType, setId, effectId, variant.Item1, variant.Item2));
+    }
+
+    private static IEnumerable<GameObjectInfo> HandleEquipment(FileType fileType, GroupCollection groups) {
+        if (fileType == FileType.Vfx) {
+            return HandleEquipmentVfx(fileType, groups);
+        }
+
         var setId = ushort.Parse(groups["id"].Value);
         if (fileType == FileType.Imc) {
-            return GameObjectInfo.Equipment(fileType, setId);
+            return new[] { GameObjectInfo.Equipment(fileType, setId) };
         }
 
         var gr = Names.GenderRaceFromCode(groups["race"].Value);
         var slot = Names.SuffixToEquipSlot[groups["slot"].Value];
         if (fileType == FileType.Model) {
-            return GameObjectInfo.Equipment(fileType, setId, gr, slot);
+            return new[] { GameObjectInfo.Equipment(fileType, setId, gr, slot) };
         }
 
         var variant = byte.Parse(groups["variant"].Value);
-        return GameObjectInfo.Equipment(fileType, setId, gr, slot, variant);
+        return new[] { GameObjectInfo.Equipment(fileType, setId, gr, slot, variant) };
     }
 
     private static GameObjectInfo HandleWeapon(FileType fileType, GroupCollection groups) {
@@ -326,10 +378,10 @@ internal class GamePathParser {
         return GameObjectInfo.Map(fileType, map[0], map[1], map[2], map[3], variant);
     }
 
-    public GameObjectInfo GetFileInfo(string path) {
+    public IEnumerable<GameObjectInfo> GetFileInfo(string path) {
         var (fileType, objectType, match) = this.ParseGamePath(path);
         if (match is not { Success: true }) {
-            return new GameObjectInfo { FileType = fileType, ObjectType = objectType };
+            return new[] { new GameObjectInfo { FileType = fileType, ObjectType = objectType } };
         }
 
         try {
@@ -337,18 +389,18 @@ internal class GamePathParser {
             switch (objectType) {
                 case ObjectType.Accessory: return HandleEquipment(fileType, groups);
                 case ObjectType.Equipment: return HandleEquipment(fileType, groups);
-                case ObjectType.Weapon: return HandleWeapon(fileType, groups);
-                case ObjectType.Map: return HandleMap(fileType, groups);
-                case ObjectType.Monster: return HandleMonster(fileType, groups);
-                case ObjectType.DemiHuman: return HandleDemiHuman(fileType, groups);
-                case ObjectType.Character: return HandleCustomization(fileType, groups);
-                case ObjectType.Icon: return HandleIcon(fileType, groups);
+                case ObjectType.Weapon: return new[] { HandleWeapon(fileType, groups) };
+                case ObjectType.Map: return new[] { HandleMap(fileType, groups) };
+                case ObjectType.Monster: return new[] { HandleMonster(fileType, groups) };
+                case ObjectType.DemiHuman: return new[] { HandleDemiHuman(fileType, groups) };
+                case ObjectType.Character: return new[] { HandleCustomization(fileType, groups) };
+                case ObjectType.Icon: return new[] { HandleIcon(fileType, groups) };
             }
         } catch (Exception e) {
             Console.WriteLine($"Could not parse {path}:\n{e}");
         }
 
-        return new GameObjectInfo { FileType = fileType, ObjectType = objectType };
+        return new[] { new GameObjectInfo { FileType = fileType, ObjectType = objectType } };
     }
 
     private readonly Regex _vfxRegexTmb = new(@"chara/action/(?'key'[^\s]+?)\.tmb");

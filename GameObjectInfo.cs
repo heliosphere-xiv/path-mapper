@@ -14,6 +14,15 @@ public struct GameObjectInfo : IComparable {
         EquipSlot = slot,
     };
 
+    public static GameObjectInfo EquipmentVfx(FileType type, ushort modelId, ushort effectId, EquipSlot slot, byte variant) => new() {
+        FileType = type,
+        ObjectType = ObjectType.Equipment,
+        PrimaryId = modelId,
+        SecondaryId = effectId,
+        Variant = variant,
+        EquipSlot = slot,
+    };
+
     public static GameObjectInfo Weapon(FileType type, ushort setId, ushort weaponId, byte variant = 0) => new() {
         FileType = type,
         ObjectType = ObjectType.Weapon,
