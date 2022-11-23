@@ -227,9 +227,8 @@ internal class GamePathParser {
         var imc = _gameData.GetFile<ImcFile>(imcPath)!;
 
         var variants = new List<(EquipSlot, byte)>();
-        var partIdx = 0;
-        foreach (var part in imc.GetParts()) {
-            var i = 0;
+        for (var partIdx = 0; partIdx < imc.GetParts().Length; partIdx++) {
+            var part = imc.GetPart(partIdx);
 
             var slot = partIdx switch {
                 0 => EquipSlot.Head,
@@ -240,15 +239,13 @@ internal class GamePathParser {
                 _ => throw new ArgumentOutOfRangeException(),
             };
 
-            foreach (var info in part.Variants) {
+            for (var i = 0; i < part.Variants.Length; i++) {
+                var info = part.Variants[i];
+
                 if (info.VfxId == effectId) {
-                    variants.Add((slot, (byte) i));
+                    variants.Add((slot, (byte) (i + 1)));
                 }
-
-                i += 1;
             }
-
-            partIdx += 1;
         }
 
         return variants.Select(variant => GameObjectInfo.EquipmentVfx(fileType, setId, effectId, variant.Item1, variant.Item2));
