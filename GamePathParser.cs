@@ -140,8 +140,17 @@ internal class GamePathParser {
             },
         },
         [FileType.Vfx] = new Dictionary<ObjectType, Regex[]> {
+            [ObjectType.Weapon] = new Regex[] {
+                new(@"chara/weapon/w(?'id'\d{4})/obj/body/b(?'weapon'\d{4})/vfx/eff/vw(?'effect'\d{4})\.avfx", RegexOptions.Compiled),
+            },
             [ObjectType.Equipment] = new Regex[] {
-                new(@"chara/equipment/e(?'id'\d{4})/vfx/eff/ve(?'effect'\d{4})\.avfx"),
+                new(@"chara/equipment/e(?'id'\d{4})/vfx/eff/ve(?'effect'\d{4})\.avfx", RegexOptions.Compiled),
+            },
+            [ObjectType.Monster] = new Regex[] {
+                new(@"chara/monster/m(?'monster'\d{4})/obj/body/b(?'id'\d{4})/vfx/eff/vm(?'effect'\d{4})\.avfx", RegexOptions.Compiled),
+            },
+            [ObjectType.DemiHuman] = new Regex[] {
+                new(@"chara/demihuman/d(?'id'\d{4})/obj/equipment/e(?'equip'\d{4})/vfx/eff/ve(?'effect'\d{4})\.avfx", RegexOptions.Compiled),
             },
         },
     };
@@ -271,42 +280,124 @@ internal class GamePathParser {
         return new[] { GameObjectInfo.Equipment(fileType, setId, gr, slot, variant) };
     }
 
-    private static GameObjectInfo HandleWeapon(FileType fileType, GroupCollection groups) {
+    private static IEnumerable<GameObjectInfo> HandleWeaponVfx(FileType fileType, ushort setId, ushort weaponId, GroupCollection groups) {
+        var effect = ushort.Parse(groups["effect"].Value);
+
+        var imcPath = $"chara/weapon/w{setId:0000}/obj/body/b{weaponId:0000}/b{weaponId:0000}.imc";
+        var imc = _gameData.GetFile<ImcFile>(imcPath);
+        if (imc == null) {
+            Console.WriteLine($"[WARN] missing imc file {imcPath}");
+            return Array.Empty<GameObjectInfo>();
+        }
+
+        var part = imc.GetPart(0);
+
+        var infos = new List<GameObjectInfo>();
+
+        for (var i = 0; i < part.Variants.Length; i++) {
+            var variant = part.Variants[i];
+            if (variant.VfxId != effect) {
+                continue;
+            }
+
+            infos.Add(GameObjectInfo.Weapon(fileType, setId, weaponId, (byte) (i + 1)));
+        }
+
+        return infos;
+    }
+
+    private static IEnumerable<GameObjectInfo> HandleWeapon(FileType fileType, GroupCollection groups) {
         var weaponId = ushort.Parse(groups["weapon"].Value);
         var setId = ushort.Parse(groups["id"].Value);
         if (fileType is FileType.Imc or FileType.Model or FileType.Skeleton) {
-            return GameObjectInfo.Weapon(fileType, setId, weaponId);
+            return new[] { GameObjectInfo.Weapon(fileType, setId, weaponId) };
+        }
+
+        if (fileType == FileType.Vfx) {
+            return HandleWeaponVfx(fileType, setId, weaponId, groups);
         }
 
         var variant = byte.Parse(groups["variant"].Value);
-        return GameObjectInfo.Weapon(fileType, setId, weaponId, variant);
+        return new[] { GameObjectInfo.Weapon(fileType, setId, weaponId, variant) };
     }
 
-    private static GameObjectInfo HandleMonster(FileType fileType, GroupCollection groups) {
+    private static IEnumerable<GameObjectInfo> HandleMonsterVfx(FileType fileType, ushort monsterId, ushort bodyId, GroupCollection groups) {
+        var effect = ushort.Parse(groups["effect"].Value);
+
+        var imcPath = $"chara/monster/m{monsterId:0000}/obj/body/b{bodyId:0000}/b{bodyId:0000}.imc";
+        var imc = _gameData.GetFile<ImcFile>(imcPath)!;
+
+        var infos = new List<GameObjectInfo>();
+
+        foreach (var part in imc.GetParts()) {
+            for (var i = 0; i < part.Variants.Length; i++) {
+                var variant = part.Variants[i];
+                if (variant.VfxId != effect) {
+                    continue;
+                }
+
+                infos.Add(GameObjectInfo.Monster(fileType, monsterId, bodyId, (byte) (i + 1)));
+            }
+        }
+
+        return infos;
+    }
+
+    private static IEnumerable<GameObjectInfo> HandleMonster(FileType fileType, GroupCollection groups) {
         var monsterId = ushort.Parse(groups["monster"].Value);
         var bodyId = ushort.Parse(groups["id"].Value);
         if (fileType is FileType.Imc or FileType.Model or FileType.Skeleton) {
-            return GameObjectInfo.Monster(fileType, monsterId, bodyId);
+            return new[] { GameObjectInfo.Monster(fileType, monsterId, bodyId) };
+        }
+
+        if (fileType == FileType.Vfx) {
+            return HandleMonsterVfx(fileType, monsterId, bodyId, groups);
         }
 
         var variant = byte.Parse(groups["variant"].Value);
-        return GameObjectInfo.Monster(fileType, monsterId, bodyId, variant);
+        return new[] { GameObjectInfo.Monster(fileType, monsterId, bodyId, variant) };
     }
 
-    private static GameObjectInfo HandleDemiHuman(FileType fileType, GroupCollection groups) {
+    private static IEnumerable<GameObjectInfo> HandleDemiHumanVfx(FileType fileType, ushort demiHumanId, ushort equipId, GroupCollection groups) {
+        var effect = ushort.Parse(groups["effect"].Value);
+
+        var imcPath = $"chara/demihuman/d{demiHumanId:0000}/obj/equipment/e{equipId:0000}/e{equipId:0000}.imc";
+        var imc = _gameData.GetFile<ImcFile>(imcPath)!;
+
+        var infos = new List<GameObjectInfo>();
+
+        foreach (var part in imc.GetParts()) {
+            for (var i = 0; i < part.Variants.Length; i++) {
+                var variant = part.Variants[i];
+                if (variant.VfxId != effect) {
+                    continue;
+                }
+
+                infos.Add(GameObjectInfo.DemiHuman(fileType, demiHumanId, equipId, variant: (byte) (i + 1)));
+            }
+        }
+
+        return infos;
+    }
+
+    private static IEnumerable<GameObjectInfo> HandleDemiHuman(FileType fileType, GroupCollection groups) {
         var demiHumanId = ushort.Parse(groups["id"].Value);
         var equipId = ushort.Parse(groups["equip"].Value);
         if (fileType is FileType.Imc or FileType.Skeleton) {
-            return GameObjectInfo.DemiHuman(fileType, demiHumanId, equipId);
+            return new[] { GameObjectInfo.DemiHuman(fileType, demiHumanId, equipId) };
+        }
+
+        if (fileType == FileType.Vfx) {
+            return HandleDemiHumanVfx(fileType, demiHumanId, equipId, groups);
         }
 
         var slot = Names.SuffixToEquipSlot[groups["slot"].Value];
         if (fileType == FileType.Model) {
-            return GameObjectInfo.DemiHuman(fileType, demiHumanId, equipId, slot);
+            return new[] { GameObjectInfo.DemiHuman(fileType, demiHumanId, equipId, slot) };
         }
 
         var variant = byte.Parse(groups["variant"].Value);
-        return GameObjectInfo.DemiHuman(fileType, demiHumanId, equipId, slot, variant);
+        return new[] { GameObjectInfo.DemiHuman(fileType, demiHumanId, equipId, slot, variant) };
     }
 
     private static GameObjectInfo HandleCustomization(FileType fileType, GroupCollection groups) {
@@ -386,10 +477,10 @@ internal class GamePathParser {
             switch (objectType) {
                 case ObjectType.Accessory: return HandleEquipment(fileType, groups);
                 case ObjectType.Equipment: return HandleEquipment(fileType, groups);
-                case ObjectType.Weapon: return new[] { HandleWeapon(fileType, groups) };
+                case ObjectType.Weapon: return HandleWeapon(fileType, groups);
                 case ObjectType.Map: return new[] { HandleMap(fileType, groups) };
-                case ObjectType.Monster: return new[] { HandleMonster(fileType, groups) };
-                case ObjectType.DemiHuman: return new[] { HandleDemiHuman(fileType, groups) };
+                case ObjectType.Monster: return HandleMonster(fileType, groups);
+                case ObjectType.DemiHuman: return HandleDemiHuman(fileType, groups);
                 case ObjectType.Character: return new[] { HandleCustomization(fileType, groups) };
                 case ObjectType.Icon: return new[] { HandleIcon(fileType, groups) };
             }

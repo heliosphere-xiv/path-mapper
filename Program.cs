@@ -2,6 +2,7 @@
 
 using System.Diagnostics;
 using System.Globalization;
+using System.IO.Compression;
 using System.Text.Json;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -18,29 +19,55 @@ var pathsCsv = args[1];
 var bnpcJson = args[2];
 var outputPath = args[3];
 
-await using var bnpcFile = File.OpenRead(bnpcJson);
-var bnpcs = (await JsonSerializer.DeserializeAsync<BNpcContainer>(bnpcFile))!;
+using var client = new HttpClient();
+
+async Task<string[]> GetPaths(HttpClient client) {
+    Console.WriteLine("downloading paths");
+    await using var pathsStream = await client.GetStreamAsync("https://rl2.perchbird.dev/download/export/CurrentPathList.gz");
+    await using var gzip = new GZipStream(pathsStream, CompressionMode.Decompress);
+    using var reader = new StreamReader(gzip);
+    var paths = await reader.ReadToEndAsync();
+    return paths
+        .Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries)
+        .OrderBy(path => path)
+        .ToArray();
+}
+
+BNpcContainer bnpcs;
+if (bnpcJson == "auto") {
+    Console.WriteLine("downloading bnpc info");
+    var json = await client.GetStringAsync("https://gubal.hasura.app/api/rest/bnpc");
+    bnpcs = JsonSerializer.Deserialize<BNpcContainer>(json)!;
+} else {
+    await using var bnpcFile = File.OpenRead(bnpcJson);
+    bnpcs = (await JsonSerializer.DeserializeAsync<BNpcContainer>(bnpcFile))!;
+}
 
 var gameData = new GameData(gamePath);
 var identifier = new ObjectIdentification(gameData, new GamePathParser(gameData), bnpcs);
 
-await using var file = File.Open(pathsCsv, FileMode.Open);
-using var csv = new CsvReader(new StreamReader(file), new CsvConfiguration(CultureInfo.InvariantCulture) {
-    HasHeaderRecord = true,
-});
-var allPaths = csv.GetRecords<Record>()
-    .Select(record => record.path)
-    .OrderBy(path => path)
-    .ToList();
+string[] allPaths;
+if (pathsCsv == "auto") {
+    allPaths = await GetPaths(client);
+} else {
+    await using var file = File.Open(pathsCsv, FileMode.Open);
+    using var csv = new CsvReader(new StreamReader(file), new CsvConfiguration(CultureInfo.InvariantCulture) {
+        HasHeaderRecord = true,
+    });
+    allPaths = csv.GetRecords<Record>()
+        .Select(record => record.path)
+        .OrderBy(path => path)
+        .ToArray();
+}
 
 var affects = new Dictionary<string, List<string>>();
 var stopwatch = new Stopwatch();
 stopwatch.Start();
 
-var onePct = (int) Math.Round((float) allPaths.Count / 100);
-for (var i = 0; i < allPaths.Count; i++) {
+var onePct = (int) Math.Round((float) allPaths.Length / 100);
+for (var i = 0; i < allPaths.Length; i++) {
     if (i % onePct == 0) {
-        Console.WriteLine($"{(float) i / allPaths.Count * 100:N2}% - {i:N0}/{allPaths.Count:N0}");
+        Console.WriteLine($"{(float) i / allPaths.Length * 100:N2}% - {i:N0}/{allPaths.Length:N0}");
     }
 
     var path = allPaths[i];

@@ -159,8 +159,8 @@ internal class ObjectIdentification {
         for (; start < end; ++start) {
             foreach (var item in this._equipment[start].Item2) {
                 var name = item.Name.ToString();
-                if (info.FileType == FileType.Vfx) {
-                    name += " (Vfx)";
+                if (string.IsNullOrWhiteSpace(name) || (item.RowId != 17557 && name.StartsWith("Dated "))) {
+                    continue;
                 }
 
                 set[name] = item;
@@ -188,7 +188,12 @@ internal class ObjectIdentification {
 
         for (; start < end; ++start) {
             foreach (var item in this._weapons[start].Item2) {
-                set[item.Name.ToString()] = item;
+                var name = item.Name.ToString();
+                if (string.IsNullOrWhiteSpace(name) || (item.RowId != 17557 && name.StartsWith("Dated "))) {
+                    continue;
+                }
+
+                set[name] = item;
             }
         }
     }
@@ -358,20 +363,20 @@ internal class ObjectIdentification {
                 var genderString = gender != Gender.Unknown ? gender.ToName() + " " : "Player ";
                 switch (info.CustomizationType) {
                     case CustomizationType.Skin:
-                        set[$"Customization: {raceString}{genderString}Skin Textures"] = null;
+                        set[$"{raceString}{genderString}Skin Textures"] = null;
                         break;
                     case CustomizationType.DecalFace:
-                        set[$"Customization: Face Decal {info.PrimaryId}"] = null;
+                        set[$"Face Decal {info.PrimaryId}"] = null;
                         break;
                     case CustomizationType.Iris when race == ModelRace.Unknown:
-                        set["Customization: All Eyes (Catchlight)"] = null;
+                        set["All Eyes (Catchlight)"] = null;
                         break;
                     default: {
                         var customizationString = race == ModelRace.Unknown
                                                   || info.BodySlot == BodySlot.Unknown
                                                   || info.CustomizationType == CustomizationType.Unknown
                             ? "Customization: Unknown"
-                            : $"Customization: {race.ToName()} {gender} {info.BodySlot} ({info.CustomizationType}) {info.PrimaryId}";
+                            : $"{race.ToName()} {gender} {info.BodySlot} ({info.CustomizationType}) {info.PrimaryId}";
 
                         var isSkel = info.BodySlot == BodySlot.Unknown
                                      && info.CustomizationType != CustomizationType.Unknown
@@ -380,7 +385,7 @@ internal class ObjectIdentification {
                         if (isSkel) {
                             // FIXME: met/m0188 surely is an item id, right
                             // Goatskin Pothelm (Midlander Male Skeleton)
-                            customizationString = $"Customization: {race.ToName()} {gender} {info.CustomizationType} Skeleton";
+                            customizationString = $"{race.ToName()} {gender} {info.CustomizationType} Skeleton";
                         }
 
                         set[customizationString] = null;
@@ -444,6 +449,7 @@ internal class ObjectIdentification {
         var match = info.FileType switch {
             FileType.Material => 3,
             FileType.Texture => 3,
+            FileType.Vfx => 3,
             FileType.Model => 2,
             FileType.Skeleton => 1,
             FileType.SkeletonParameter => 1,
