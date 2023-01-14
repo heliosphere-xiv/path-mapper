@@ -43,7 +43,9 @@ if (bnpcJson == "auto") {
     bnpcs = (await JsonSerializer.DeserializeAsync<BNpcContainer>(bnpcFile))!;
 }
 
-var gameData = new GameData(gamePath);
+var luminaSettings = new Lumina.LuminaOptions();
+luminaSettings.PanicOnSheetChecksumMismatch = false;
+var gameData = new GameData(gamePath, luminaSettings);
 var identifier = new ObjectIdentification(gameData, new GamePathParser(gameData), bnpcs);
 
 string[] allPaths;
