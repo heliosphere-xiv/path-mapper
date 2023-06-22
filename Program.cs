@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.IO.Compression;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -36,15 +37,22 @@ async Task<string[]> GetPaths(HttpClient client) {
 BNpcContainer bnpcs;
 if (bnpcJson == "auto") {
     Console.WriteLine("downloading bnpc info");
-    var json = await client.GetStringAsync("https://gubal.hasura.app/api/rest/bnpc");
-    bnpcs = JsonSerializer.Deserialize<BNpcContainer>(json)!;
+    var message = new HttpRequestMessage(HttpMethod.Post, "https://api.ffxivteamcraft.com/gubal");
+    message.Content = new StringContent(JsonSerializer.Serialize(new {
+        query = "query { bnpc { bnpcBase, bnpcName } }",
+    }));
+    message.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+    var json = await (await client.SendAsync(message)).Content.ReadAsStringAsync();
+    bnpcs = JsonSerializer.Deserialize<GraphqlContainer<BNpcContainer>>(json)!.data;
 } else {
     await using var bnpcFile = File.OpenRead(bnpcJson);
     bnpcs = (await JsonSerializer.DeserializeAsync<BNpcContainer>(bnpcFile))!;
 }
 
-var luminaSettings = new Lumina.LuminaOptions();
-luminaSettings.PanicOnSheetChecksumMismatch = false;
+var luminaSettings = new LuminaOptions {
+    PanicOnSheetChecksumMismatch = false,
+};
 var gameData = new GameData(gamePath, luminaSettings);
 var identifier = new ObjectIdentification(gameData, new GamePathParser(gameData), bnpcs);
 
@@ -91,6 +99,11 @@ public class Record {
     public int hash { get; set; }
     public int index { get; set; }
     public string path { get; set; }
+}
+
+[Serializable]
+public class GraphqlContainer<T> {
+    public T data { get; set; }
 }
 
 [Serializable]
