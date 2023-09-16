@@ -1,0 +1,6 @@
+schema: schema.graphql
+documents: '**/*.graphql'
+extensions:
+  endpoints:
+    TeamCraft:
+      url: https://api.ffxivteamcraft.com/gubal

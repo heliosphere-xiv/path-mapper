@@ -70,20 +70,39 @@ if (pathsCsv == "auto") {
         .ToArray();
 }
 
+// change this to something like
+// {
+//   "mdl": {
+//     "_comment1": "mdl uses two matchers: primary id and secondary id",
+//     "_comment2": "358 is primary id, 1 is secondary id",
+//
+//     "358": {
+//       "1": [
+//         "Some Object Name"
+//       ]
+//     }
+//   },
+//   "tex": { ... }
+// }
+
+Console.WriteLine($"[{0:000.00}s] {0:N2}% - {0:N0}/{allPaths.Length:N0}");
+
 var affects = new Dictionary<string, List<string>>();
 var stopwatch = new Stopwatch();
 stopwatch.Start();
 
-var onePct = (int) Math.Round((float) allPaths.Length / 100);
+var lastSeconds = 0u;
 for (var i = 0; i < allPaths.Length; i++) {
-    if (i % onePct == 0) {
-        Console.WriteLine($"{(float) i / allPaths.Length * 100:N2}% - {i:N0}/{allPaths.Length:N0}");
+    var elapsed = (uint) stopwatch.Elapsed.TotalSeconds;
+    if (elapsed > lastSeconds + 2) {
+        Console.WriteLine($"[{stopwatch.Elapsed.TotalSeconds:000.00}s] {(float) i / allPaths.Length * 100:N2}% - {i:N0}/{allPaths.Length:N0}");
+        lastSeconds = elapsed;
     }
 
     var path = allPaths[i];
     foreach (var (key, _) in identifier.Identify(path)) {
-        if (affects.ContainsKey(path)) {
-            affects[path].Add(key);
+        if (affects.TryGetValue(path, out var affected)) {
+            affected.Add(key);
         } else {
             affects[path] = new List<string> { key };
         }

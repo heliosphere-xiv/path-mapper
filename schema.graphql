@@ -1,0 +1,4901 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: query_root
+    subscription: subscription_root
+}
+
+"whether this query should be cached (Hasura Cloud only)"
+directive @cached(
+    "refresh the cache entry"
+    refresh: Boolean! = false,
+    "measured in seconds"
+    ttl: Int! = 60
+) on QUERY
+
+"columns and relationships of \"allagan_reports\""
+type allagan_reports {
+    applied: Boolean!
+    created_at: timestamptz!
+    data(
+        "JSON select path"
+        path: String
+    ): jsonb!
+    gt: Boolean
+    itemId: Int!
+    reporter: String!
+    reviewer: String!
+    source: String!
+    uid: uuid!
+    updated_at: timestamptz!
+}
+
+"aggregated selection of \"allagan_reports\""
+type allagan_reports_aggregate {
+    aggregate: allagan_reports_aggregate_fields
+    nodes: [allagan_reports!]!
+}
+
+"aggregate fields of \"allagan_reports\""
+type allagan_reports_aggregate_fields {
+    avg: allagan_reports_avg_fields
+    count(columns: [allagan_reports_select_column!], distinct: Boolean): Int!
+    max: allagan_reports_max_fields
+    min: allagan_reports_min_fields
+    stddev: allagan_reports_stddev_fields
+    stddev_pop: allagan_reports_stddev_pop_fields
+    stddev_samp: allagan_reports_stddev_samp_fields
+    sum: allagan_reports_sum_fields
+    var_pop: allagan_reports_var_pop_fields
+    var_samp: allagan_reports_var_samp_fields
+    variance: allagan_reports_variance_fields
+}
+
+"aggregate avg on columns"
+type allagan_reports_avg_fields {
+    itemId: Float
+}
+
+"aggregate max on columns"
+type allagan_reports_max_fields {
+    created_at: timestamptz
+    itemId: Int
+    reporter: String
+    reviewer: String
+    source: String
+    uid: uuid
+    updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type allagan_reports_min_fields {
+    created_at: timestamptz
+    itemId: Int
+    reporter: String
+    reviewer: String
+    source: String
+    uid: uuid
+    updated_at: timestamptz
+}
+
+"aggregate stddev on columns"
+type allagan_reports_stddev_fields {
+    itemId: Float
+}
+
+"aggregate stddev_pop on columns"
+type allagan_reports_stddev_pop_fields {
+    itemId: Float
+}
+
+"aggregate stddev_samp on columns"
+type allagan_reports_stddev_samp_fields {
+    itemId: Float
+}
+
+"aggregate sum on columns"
+type allagan_reports_sum_fields {
+    itemId: Int
+}
+
+"aggregate var_pop on columns"
+type allagan_reports_var_pop_fields {
+    itemId: Float
+}
+
+"aggregate var_samp on columns"
+type allagan_reports_var_samp_fields {
+    itemId: Float
+}
+
+"aggregate variance on columns"
+type allagan_reports_variance_fields {
+    itemId: Float
+}
+
+"columns and relationships of \"baits_per_fish\""
+type baits_per_fish {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregated selection of \"baits_per_fish\""
+type baits_per_fish_aggregate {
+    aggregate: baits_per_fish_aggregate_fields
+    nodes: [baits_per_fish!]!
+}
+
+"aggregate fields of \"baits_per_fish\""
+type baits_per_fish_aggregate_fields {
+    avg: baits_per_fish_avg_fields
+    count(columns: [baits_per_fish_select_column!], distinct: Boolean): Int!
+    max: baits_per_fish_max_fields
+    min: baits_per_fish_min_fields
+    stddev: baits_per_fish_stddev_fields
+    stddev_pop: baits_per_fish_stddev_pop_fields
+    stddev_samp: baits_per_fish_stddev_samp_fields
+    sum: baits_per_fish_sum_fields
+    var_pop: baits_per_fish_var_pop_fields
+    var_samp: baits_per_fish_var_samp_fields
+    variance: baits_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type baits_per_fish_avg_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate max on columns"
+type baits_per_fish_max_fields {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate min on columns"
+type baits_per_fish_min_fields {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"columns and relationships of \"baits_per_fish_per_spot\""
+type baits_per_fish_per_spot {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregated selection of \"baits_per_fish_per_spot\""
+type baits_per_fish_per_spot_aggregate {
+    aggregate: baits_per_fish_per_spot_aggregate_fields
+    nodes: [baits_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"baits_per_fish_per_spot\""
+type baits_per_fish_per_spot_aggregate_fields {
+    avg: baits_per_fish_per_spot_avg_fields
+    count(columns: [baits_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: baits_per_fish_per_spot_max_fields
+    min: baits_per_fish_per_spot_min_fields
+    stddev: baits_per_fish_per_spot_stddev_fields
+    stddev_pop: baits_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: baits_per_fish_per_spot_stddev_samp_fields
+    sum: baits_per_fish_per_spot_sum_fields
+    var_pop: baits_per_fish_per_spot_var_pop_fields
+    var_samp: baits_per_fish_per_spot_var_samp_fields
+    variance: baits_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type baits_per_fish_per_spot_avg_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate max on columns"
+type baits_per_fish_per_spot_max_fields {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate min on columns"
+type baits_per_fish_per_spot_min_fields {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate stddev on columns"
+type baits_per_fish_per_spot_stddev_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_pop on columns"
+type baits_per_fish_per_spot_stddev_pop_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_samp on columns"
+type baits_per_fish_per_spot_stddev_samp_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate sum on columns"
+type baits_per_fish_per_spot_sum_fields {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate var_pop on columns"
+type baits_per_fish_per_spot_var_pop_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate var_samp on columns"
+type baits_per_fish_per_spot_var_samp_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate variance on columns"
+type baits_per_fish_per_spot_variance_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev on columns"
+type baits_per_fish_stddev_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_pop on columns"
+type baits_per_fish_stddev_pop_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_samp on columns"
+type baits_per_fish_stddev_samp_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate sum on columns"
+type baits_per_fish_sum_fields {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate var_pop on columns"
+type baits_per_fish_var_pop_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate var_samp on columns"
+type baits_per_fish_var_samp_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate variance on columns"
+type baits_per_fish_variance_fields {
+    baitId: Float
+    itemId: Float
+    occurences: Float
+}
+
+"columns and relationships of \"bite_time_per_fish\""
+type bite_time_per_fish {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregated selection of \"bite_time_per_fish\""
+type bite_time_per_fish_aggregate {
+    aggregate: bite_time_per_fish_aggregate_fields
+    nodes: [bite_time_per_fish!]!
+}
+
+"aggregate fields of \"bite_time_per_fish\""
+type bite_time_per_fish_aggregate_fields {
+    avg: bite_time_per_fish_avg_fields
+    count(columns: [bite_time_per_fish_select_column!], distinct: Boolean): Int!
+    max: bite_time_per_fish_max_fields
+    min: bite_time_per_fish_min_fields
+    stddev: bite_time_per_fish_stddev_fields
+    stddev_pop: bite_time_per_fish_stddev_pop_fields
+    stddev_samp: bite_time_per_fish_stddev_samp_fields
+    sum: bite_time_per_fish_sum_fields
+    var_pop: bite_time_per_fish_var_pop_fields
+    var_samp: bite_time_per_fish_var_samp_fields
+    variance: bite_time_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type bite_time_per_fish_avg_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate max on columns"
+type bite_time_per_fish_max_fields {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate min on columns"
+type bite_time_per_fish_min_fields {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"columns and relationships of \"bite_time_per_fish_per_spot\""
+type bite_time_per_fish_per_spot {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregated selection of \"bite_time_per_fish_per_spot\""
+type bite_time_per_fish_per_spot_aggregate {
+    aggregate: bite_time_per_fish_per_spot_aggregate_fields
+    nodes: [bite_time_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"bite_time_per_fish_per_spot\""
+type bite_time_per_fish_per_spot_aggregate_fields {
+    avg: bite_time_per_fish_per_spot_avg_fields
+    count(columns: [bite_time_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: bite_time_per_fish_per_spot_max_fields
+    min: bite_time_per_fish_per_spot_min_fields
+    stddev: bite_time_per_fish_per_spot_stddev_fields
+    stddev_pop: bite_time_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: bite_time_per_fish_per_spot_stddev_samp_fields
+    sum: bite_time_per_fish_per_spot_sum_fields
+    var_pop: bite_time_per_fish_per_spot_var_pop_fields
+    var_samp: bite_time_per_fish_per_spot_var_samp_fields
+    variance: bite_time_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type bite_time_per_fish_per_spot_avg_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate max on columns"
+type bite_time_per_fish_per_spot_max_fields {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate min on columns"
+type bite_time_per_fish_per_spot_min_fields {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"columns and relationships of \"bite_time_per_fish_per_spot_per_bait\""
+type bite_time_per_fish_per_spot_per_bait {
+    baitId: Int
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregated selection of \"bite_time_per_fish_per_spot_per_bait\""
+type bite_time_per_fish_per_spot_per_bait_aggregate {
+    aggregate: bite_time_per_fish_per_spot_per_bait_aggregate_fields
+    nodes: [bite_time_per_fish_per_spot_per_bait!]!
+}
+
+"aggregate fields of \"bite_time_per_fish_per_spot_per_bait\""
+type bite_time_per_fish_per_spot_per_bait_aggregate_fields {
+    avg: bite_time_per_fish_per_spot_per_bait_avg_fields
+    count(columns: [bite_time_per_fish_per_spot_per_bait_select_column!], distinct: Boolean): Int!
+    max: bite_time_per_fish_per_spot_per_bait_max_fields
+    min: bite_time_per_fish_per_spot_per_bait_min_fields
+    stddev: bite_time_per_fish_per_spot_per_bait_stddev_fields
+    stddev_pop: bite_time_per_fish_per_spot_per_bait_stddev_pop_fields
+    stddev_samp: bite_time_per_fish_per_spot_per_bait_stddev_samp_fields
+    sum: bite_time_per_fish_per_spot_per_bait_sum_fields
+    var_pop: bite_time_per_fish_per_spot_per_bait_var_pop_fields
+    var_samp: bite_time_per_fish_per_spot_per_bait_var_samp_fields
+    variance: bite_time_per_fish_per_spot_per_bait_variance_fields
+}
+
+"aggregate avg on columns"
+type bite_time_per_fish_per_spot_per_bait_avg_fields {
+    baitId: Float
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate max on columns"
+type bite_time_per_fish_per_spot_per_bait_max_fields {
+    baitId: Int
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate min on columns"
+type bite_time_per_fish_per_spot_per_bait_min_fields {
+    baitId: Int
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate stddev on columns"
+type bite_time_per_fish_per_spot_per_bait_stddev_fields {
+    baitId: Float
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_pop on columns"
+type bite_time_per_fish_per_spot_per_bait_stddev_pop_fields {
+    baitId: Float
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_samp on columns"
+type bite_time_per_fish_per_spot_per_bait_stddev_samp_fields {
+    baitId: Float
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate sum on columns"
+type bite_time_per_fish_per_spot_per_bait_sum_fields {
+    baitId: Int
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate var_pop on columns"
+type bite_time_per_fish_per_spot_per_bait_var_pop_fields {
+    baitId: Float
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate var_samp on columns"
+type bite_time_per_fish_per_spot_per_bait_var_samp_fields {
+    baitId: Float
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate variance on columns"
+type bite_time_per_fish_per_spot_per_bait_variance_fields {
+    baitId: Float
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev on columns"
+type bite_time_per_fish_per_spot_stddev_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_pop on columns"
+type bite_time_per_fish_per_spot_stddev_pop_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_samp on columns"
+type bite_time_per_fish_per_spot_stddev_samp_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate sum on columns"
+type bite_time_per_fish_per_spot_sum_fields {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate var_pop on columns"
+type bite_time_per_fish_per_spot_var_pop_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate var_samp on columns"
+type bite_time_per_fish_per_spot_var_samp_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate variance on columns"
+type bite_time_per_fish_per_spot_variance_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev on columns"
+type bite_time_per_fish_stddev_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_pop on columns"
+type bite_time_per_fish_stddev_pop_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_samp on columns"
+type bite_time_per_fish_stddev_samp_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate sum on columns"
+type bite_time_per_fish_sum_fields {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate var_pop on columns"
+type bite_time_per_fish_var_pop_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate var_samp on columns"
+type bite_time_per_fish_var_samp_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate variance on columns"
+type bite_time_per_fish_variance_fields {
+    flooredBiteTime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"list of bnpcname <=> bnpcbase links"
+type bnpc {
+    bnpcBase: Int!
+    bnpcName: Int!
+}
+
+"columns and relationships of \"etimes_per_fish\""
+type etimes_per_fish {
+    etime: numeric
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregated selection of \"etimes_per_fish\""
+type etimes_per_fish_aggregate {
+    aggregate: etimes_per_fish_aggregate_fields
+    nodes: [etimes_per_fish!]!
+}
+
+"aggregate fields of \"etimes_per_fish\""
+type etimes_per_fish_aggregate_fields {
+    avg: etimes_per_fish_avg_fields
+    count(columns: [etimes_per_fish_select_column!], distinct: Boolean): Int!
+    max: etimes_per_fish_max_fields
+    min: etimes_per_fish_min_fields
+    stddev: etimes_per_fish_stddev_fields
+    stddev_pop: etimes_per_fish_stddev_pop_fields
+    stddev_samp: etimes_per_fish_stddev_samp_fields
+    sum: etimes_per_fish_sum_fields
+    var_pop: etimes_per_fish_var_pop_fields
+    var_samp: etimes_per_fish_var_samp_fields
+    variance: etimes_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type etimes_per_fish_avg_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate max on columns"
+type etimes_per_fish_max_fields {
+    etime: numeric
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate min on columns"
+type etimes_per_fish_min_fields {
+    etime: numeric
+    itemId: Int
+    occurences: bigint
+}
+
+"columns and relationships of \"etimes_per_fish_per_spot\""
+type etimes_per_fish_per_spot {
+    etime: numeric
+    fishEyes: Boolean
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregated selection of \"etimes_per_fish_per_spot\""
+type etimes_per_fish_per_spot_aggregate {
+    aggregate: etimes_per_fish_per_spot_aggregate_fields
+    nodes: [etimes_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"etimes_per_fish_per_spot\""
+type etimes_per_fish_per_spot_aggregate_fields {
+    avg: etimes_per_fish_per_spot_avg_fields
+    count(columns: [etimes_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: etimes_per_fish_per_spot_max_fields
+    min: etimes_per_fish_per_spot_min_fields
+    stddev: etimes_per_fish_per_spot_stddev_fields
+    stddev_pop: etimes_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: etimes_per_fish_per_spot_stddev_samp_fields
+    sum: etimes_per_fish_per_spot_sum_fields
+    var_pop: etimes_per_fish_per_spot_var_pop_fields
+    var_samp: etimes_per_fish_per_spot_var_samp_fields
+    variance: etimes_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type etimes_per_fish_per_spot_avg_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate max on columns"
+type etimes_per_fish_per_spot_max_fields {
+    etime: numeric
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate min on columns"
+type etimes_per_fish_per_spot_min_fields {
+    etime: numeric
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate stddev on columns"
+type etimes_per_fish_per_spot_stddev_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_pop on columns"
+type etimes_per_fish_per_spot_stddev_pop_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_samp on columns"
+type etimes_per_fish_per_spot_stddev_samp_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate sum on columns"
+type etimes_per_fish_per_spot_sum_fields {
+    etime: numeric
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate var_pop on columns"
+type etimes_per_fish_per_spot_var_pop_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate var_samp on columns"
+type etimes_per_fish_per_spot_var_samp_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate variance on columns"
+type etimes_per_fish_per_spot_variance_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev on columns"
+type etimes_per_fish_stddev_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_pop on columns"
+type etimes_per_fish_stddev_pop_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_samp on columns"
+type etimes_per_fish_stddev_samp_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate sum on columns"
+type etimes_per_fish_sum_fields {
+    etime: numeric
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate var_pop on columns"
+type etimes_per_fish_var_pop_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate var_samp on columns"
+type etimes_per_fish_var_samp_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate variance on columns"
+type etimes_per_fish_variance_fields {
+    etime: Float
+    itemId: Float
+    occurences: Float
+}
+
+"columns and relationships of \"fish_eyes_per_fish\""
+type fish_eyes_per_fish {
+    fishEyes: Boolean
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregated selection of \"fish_eyes_per_fish\""
+type fish_eyes_per_fish_aggregate {
+    aggregate: fish_eyes_per_fish_aggregate_fields
+    nodes: [fish_eyes_per_fish!]!
+}
+
+"aggregate fields of \"fish_eyes_per_fish\""
+type fish_eyes_per_fish_aggregate_fields {
+    avg: fish_eyes_per_fish_avg_fields
+    count(columns: [fish_eyes_per_fish_select_column!], distinct: Boolean): Int!
+    max: fish_eyes_per_fish_max_fields
+    min: fish_eyes_per_fish_min_fields
+    stddev: fish_eyes_per_fish_stddev_fields
+    stddev_pop: fish_eyes_per_fish_stddev_pop_fields
+    stddev_samp: fish_eyes_per_fish_stddev_samp_fields
+    sum: fish_eyes_per_fish_sum_fields
+    var_pop: fish_eyes_per_fish_var_pop_fields
+    var_samp: fish_eyes_per_fish_var_samp_fields
+    variance: fish_eyes_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type fish_eyes_per_fish_avg_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate max on columns"
+type fish_eyes_per_fish_max_fields {
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate min on columns"
+type fish_eyes_per_fish_min_fields {
+    itemId: Int
+    occurences: bigint
+}
+
+"columns and relationships of \"fish_eyes_per_fish_per_spot\""
+type fish_eyes_per_fish_per_spot {
+    fishEyes: Boolean
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregated selection of \"fish_eyes_per_fish_per_spot\""
+type fish_eyes_per_fish_per_spot_aggregate {
+    aggregate: fish_eyes_per_fish_per_spot_aggregate_fields
+    nodes: [fish_eyes_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"fish_eyes_per_fish_per_spot\""
+type fish_eyes_per_fish_per_spot_aggregate_fields {
+    avg: fish_eyes_per_fish_per_spot_avg_fields
+    count(columns: [fish_eyes_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: fish_eyes_per_fish_per_spot_max_fields
+    min: fish_eyes_per_fish_per_spot_min_fields
+    stddev: fish_eyes_per_fish_per_spot_stddev_fields
+    stddev_pop: fish_eyes_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: fish_eyes_per_fish_per_spot_stddev_samp_fields
+    sum: fish_eyes_per_fish_per_spot_sum_fields
+    var_pop: fish_eyes_per_fish_per_spot_var_pop_fields
+    var_samp: fish_eyes_per_fish_per_spot_var_samp_fields
+    variance: fish_eyes_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type fish_eyes_per_fish_per_spot_avg_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate max on columns"
+type fish_eyes_per_fish_per_spot_max_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate min on columns"
+type fish_eyes_per_fish_per_spot_min_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate stddev on columns"
+type fish_eyes_per_fish_per_spot_stddev_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_pop on columns"
+type fish_eyes_per_fish_per_spot_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_samp on columns"
+type fish_eyes_per_fish_per_spot_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate sum on columns"
+type fish_eyes_per_fish_per_spot_sum_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate var_pop on columns"
+type fish_eyes_per_fish_per_spot_var_pop_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate var_samp on columns"
+type fish_eyes_per_fish_per_spot_var_samp_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate variance on columns"
+type fish_eyes_per_fish_per_spot_variance_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev on columns"
+type fish_eyes_per_fish_stddev_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_pop on columns"
+type fish_eyes_per_fish_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_samp on columns"
+type fish_eyes_per_fish_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate sum on columns"
+type fish_eyes_per_fish_sum_fields {
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate var_pop on columns"
+type fish_eyes_per_fish_var_pop_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate var_samp on columns"
+type fish_eyes_per_fish_var_samp_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate variance on columns"
+type fish_eyes_per_fish_variance_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"columns and relationships of \"fishingresults\""
+type fishingresults {
+    baitId: Int!
+    biteTime: Int!
+    chum: Boolean!
+    date: timestamptz
+    etime: numeric!
+    fishEyes: Boolean!
+    gathering: Int!
+    gp: Int!
+    hookset: Int!
+    hq: Boolean!
+    itemId: Int!
+    mapId: Int!
+    mooch: Boolean!
+    oceanTime: Int
+    patience: Boolean!
+    perception: Int!
+    previousWeatherId: Int!
+    size: Int!
+    snagging: Boolean!
+    spot: Int!
+    trainId: String
+    tug: Int!
+    userId: String!
+    weatherId: Int!
+}
+
+"columns and relationships of \"hooksets_per_fish\""
+type hooksets_per_fish {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregated selection of \"hooksets_per_fish\""
+type hooksets_per_fish_aggregate {
+    aggregate: hooksets_per_fish_aggregate_fields
+    nodes: [hooksets_per_fish!]!
+}
+
+"aggregate fields of \"hooksets_per_fish\""
+type hooksets_per_fish_aggregate_fields {
+    avg: hooksets_per_fish_avg_fields
+    count(columns: [hooksets_per_fish_select_column!], distinct: Boolean): Int!
+    max: hooksets_per_fish_max_fields
+    min: hooksets_per_fish_min_fields
+    stddev: hooksets_per_fish_stddev_fields
+    stddev_pop: hooksets_per_fish_stddev_pop_fields
+    stddev_samp: hooksets_per_fish_stddev_samp_fields
+    sum: hooksets_per_fish_sum_fields
+    var_pop: hooksets_per_fish_var_pop_fields
+    var_samp: hooksets_per_fish_var_samp_fields
+    variance: hooksets_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type hooksets_per_fish_avg_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate max on columns"
+type hooksets_per_fish_max_fields {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate min on columns"
+type hooksets_per_fish_min_fields {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"columns and relationships of \"hooksets_per_fish_per_spot\""
+type hooksets_per_fish_per_spot {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregated selection of \"hooksets_per_fish_per_spot\""
+type hooksets_per_fish_per_spot_aggregate {
+    aggregate: hooksets_per_fish_per_spot_aggregate_fields
+    nodes: [hooksets_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"hooksets_per_fish_per_spot\""
+type hooksets_per_fish_per_spot_aggregate_fields {
+    avg: hooksets_per_fish_per_spot_avg_fields
+    count(columns: [hooksets_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: hooksets_per_fish_per_spot_max_fields
+    min: hooksets_per_fish_per_spot_min_fields
+    stddev: hooksets_per_fish_per_spot_stddev_fields
+    stddev_pop: hooksets_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: hooksets_per_fish_per_spot_stddev_samp_fields
+    sum: hooksets_per_fish_per_spot_sum_fields
+    var_pop: hooksets_per_fish_per_spot_var_pop_fields
+    var_samp: hooksets_per_fish_per_spot_var_samp_fields
+    variance: hooksets_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type hooksets_per_fish_per_spot_avg_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate max on columns"
+type hooksets_per_fish_per_spot_max_fields {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate min on columns"
+type hooksets_per_fish_per_spot_min_fields {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate stddev on columns"
+type hooksets_per_fish_per_spot_stddev_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_pop on columns"
+type hooksets_per_fish_per_spot_stddev_pop_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_samp on columns"
+type hooksets_per_fish_per_spot_stddev_samp_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate sum on columns"
+type hooksets_per_fish_per_spot_sum_fields {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate var_pop on columns"
+type hooksets_per_fish_per_spot_var_pop_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate var_samp on columns"
+type hooksets_per_fish_per_spot_var_samp_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate variance on columns"
+type hooksets_per_fish_per_spot_variance_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev on columns"
+type hooksets_per_fish_stddev_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_pop on columns"
+type hooksets_per_fish_stddev_pop_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_samp on columns"
+type hooksets_per_fish_stddev_samp_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate sum on columns"
+type hooksets_per_fish_sum_fields {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate var_pop on columns"
+type hooksets_per_fish_var_pop_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate var_samp on columns"
+type hooksets_per_fish_var_samp_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate variance on columns"
+type hooksets_per_fish_variance_fields {
+    hookset: Float
+    itemId: Float
+    occurences: Float
+}
+
+type query_root {
+    "fetch data from the table: \"allagan_reports\""
+    allagan_reports(
+        "distinct select on columns"
+        distinct_on: [allagan_reports_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [allagan_reports_order_by!],
+        "filter the rows returned"
+        where: allagan_reports_bool_exp
+    ): [allagan_reports!]!
+    "fetch aggregated fields from the table: \"allagan_reports\""
+    allagan_reports_aggregate(
+        "distinct select on columns"
+        distinct_on: [allagan_reports_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [allagan_reports_order_by!],
+        "filter the rows returned"
+        where: allagan_reports_bool_exp
+    ): allagan_reports_aggregate!
+    "fetch data from the table: \"allagan_reports\" using primary key columns"
+    allagan_reports_by_pk(uid: uuid!): allagan_reports
+    "fetch data from the table: \"baits_per_fish\""
+    baits_per_fish(
+        "distinct select on columns"
+        distinct_on: [baits_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [baits_per_fish_order_by!],
+        "filter the rows returned"
+        where: baits_per_fish_bool_exp
+    ): [baits_per_fish!]!
+    "fetch aggregated fields from the table: \"baits_per_fish\""
+    baits_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [baits_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [baits_per_fish_order_by!],
+        "filter the rows returned"
+        where: baits_per_fish_bool_exp
+    ): baits_per_fish_aggregate!
+    "fetch data from the table: \"baits_per_fish_per_spot\""
+    baits_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [baits_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [baits_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: baits_per_fish_per_spot_bool_exp
+    ): [baits_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"baits_per_fish_per_spot\""
+    baits_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [baits_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [baits_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: baits_per_fish_per_spot_bool_exp
+    ): baits_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"bite_time_per_fish\""
+    bite_time_per_fish(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_bool_exp
+    ): [bite_time_per_fish!]!
+    "fetch aggregated fields from the table: \"bite_time_per_fish\""
+    bite_time_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_bool_exp
+    ): bite_time_per_fish_aggregate!
+    "fetch data from the table: \"bite_time_per_fish_per_spot\""
+    bite_time_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_bool_exp
+    ): [bite_time_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"bite_time_per_fish_per_spot\""
+    bite_time_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_bool_exp
+    ): bite_time_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"bite_time_per_fish_per_spot_per_bait\""
+    bite_time_per_fish_per_spot_per_bait(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_per_spot_per_bait_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_per_spot_per_bait_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_per_bait_bool_exp
+    ): [bite_time_per_fish_per_spot_per_bait!]!
+    "fetch aggregated fields from the table: \"bite_time_per_fish_per_spot_per_bait\""
+    bite_time_per_fish_per_spot_per_bait_aggregate(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_per_spot_per_bait_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_per_spot_per_bait_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_per_bait_bool_exp
+    ): bite_time_per_fish_per_spot_per_bait_aggregate!
+    "fetch data from the table: \"bnpc\""
+    bnpc(
+        "distinct select on columns"
+        distinct_on: [bnpc_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bnpc_order_by!],
+        "filter the rows returned"
+        where: bnpc_bool_exp
+    ): [bnpc!]!
+    "fetch data from the table: \"etimes_per_fish\""
+    etimes_per_fish(
+        "distinct select on columns"
+        distinct_on: [etimes_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [etimes_per_fish_order_by!],
+        "filter the rows returned"
+        where: etimes_per_fish_bool_exp
+    ): [etimes_per_fish!]!
+    "fetch aggregated fields from the table: \"etimes_per_fish\""
+    etimes_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [etimes_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [etimes_per_fish_order_by!],
+        "filter the rows returned"
+        where: etimes_per_fish_bool_exp
+    ): etimes_per_fish_aggregate!
+    "fetch data from the table: \"etimes_per_fish_per_spot\""
+    etimes_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [etimes_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [etimes_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: etimes_per_fish_per_spot_bool_exp
+    ): [etimes_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"etimes_per_fish_per_spot\""
+    etimes_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [etimes_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [etimes_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: etimes_per_fish_per_spot_bool_exp
+    ): etimes_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"fish_eyes_per_fish\""
+    fish_eyes_per_fish(
+        "distinct select on columns"
+        distinct_on: [fish_eyes_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fish_eyes_per_fish_order_by!],
+        "filter the rows returned"
+        where: fish_eyes_per_fish_bool_exp
+    ): [fish_eyes_per_fish!]!
+    "fetch aggregated fields from the table: \"fish_eyes_per_fish\""
+    fish_eyes_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [fish_eyes_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fish_eyes_per_fish_order_by!],
+        "filter the rows returned"
+        where: fish_eyes_per_fish_bool_exp
+    ): fish_eyes_per_fish_aggregate!
+    "fetch data from the table: \"fish_eyes_per_fish_per_spot\""
+    fish_eyes_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [fish_eyes_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fish_eyes_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: fish_eyes_per_fish_per_spot_bool_exp
+    ): [fish_eyes_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"fish_eyes_per_fish_per_spot\""
+    fish_eyes_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [fish_eyes_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fish_eyes_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: fish_eyes_per_fish_per_spot_bool_exp
+    ): fish_eyes_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"fishingresults\""
+    fishingresults(
+        "distinct select on columns"
+        distinct_on: [fishingresults_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fishingresults_order_by!],
+        "filter the rows returned"
+        where: fishingresults_bool_exp
+    ): [fishingresults!]!
+    "fetch data from the table: \"hooksets_per_fish\""
+    hooksets_per_fish(
+        "distinct select on columns"
+        distinct_on: [hooksets_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [hooksets_per_fish_order_by!],
+        "filter the rows returned"
+        where: hooksets_per_fish_bool_exp
+    ): [hooksets_per_fish!]!
+    "fetch aggregated fields from the table: \"hooksets_per_fish\""
+    hooksets_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [hooksets_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [hooksets_per_fish_order_by!],
+        "filter the rows returned"
+        where: hooksets_per_fish_bool_exp
+    ): hooksets_per_fish_aggregate!
+    "fetch data from the table: \"hooksets_per_fish_per_spot\""
+    hooksets_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [hooksets_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [hooksets_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: hooksets_per_fish_per_spot_bool_exp
+    ): [hooksets_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"hooksets_per_fish_per_spot\""
+    hooksets_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [hooksets_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [hooksets_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: hooksets_per_fish_per_spot_bool_exp
+    ): hooksets_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"snagging_per_fish\""
+    snagging_per_fish(
+        "distinct select on columns"
+        distinct_on: [snagging_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [snagging_per_fish_order_by!],
+        "filter the rows returned"
+        where: snagging_per_fish_bool_exp
+    ): [snagging_per_fish!]!
+    "fetch aggregated fields from the table: \"snagging_per_fish\""
+    snagging_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [snagging_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [snagging_per_fish_order_by!],
+        "filter the rows returned"
+        where: snagging_per_fish_bool_exp
+    ): snagging_per_fish_aggregate!
+    "fetch data from the table: \"snagging_per_fish_per_spot\""
+    snagging_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [snagging_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [snagging_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: snagging_per_fish_per_spot_bool_exp
+    ): [snagging_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"snagging_per_fish_per_spot\""
+    snagging_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [snagging_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [snagging_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: snagging_per_fish_per_spot_bool_exp
+    ): snagging_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"spots_per_fish\""
+    spots_per_fish(
+        "distinct select on columns"
+        distinct_on: [spots_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [spots_per_fish_order_by!],
+        "filter the rows returned"
+        where: spots_per_fish_bool_exp
+    ): [spots_per_fish!]!
+    "fetch aggregated fields from the table: \"spots_per_fish\""
+    spots_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [spots_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [spots_per_fish_order_by!],
+        "filter the rows returned"
+        where: spots_per_fish_bool_exp
+    ): spots_per_fish_aggregate!
+    "fetch data from the table: \"tug_per_fish\""
+    tug_per_fish(
+        "distinct select on columns"
+        distinct_on: [tug_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tug_per_fish_order_by!],
+        "filter the rows returned"
+        where: tug_per_fish_bool_exp
+    ): [tug_per_fish!]!
+    "fetch aggregated fields from the table: \"tug_per_fish\""
+    tug_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [tug_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tug_per_fish_order_by!],
+        "filter the rows returned"
+        where: tug_per_fish_bool_exp
+    ): tug_per_fish_aggregate!
+    "fetch data from the table: \"tug_per_fish_per_spot\""
+    tug_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [tug_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tug_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: tug_per_fish_per_spot_bool_exp
+    ): [tug_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"tug_per_fish_per_spot\""
+    tug_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [tug_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tug_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: tug_per_fish_per_spot_bool_exp
+    ): tug_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"weather_transitions_per_fish\""
+    weather_transitions_per_fish(
+        "distinct select on columns"
+        distinct_on: [weather_transitions_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weather_transitions_per_fish_order_by!],
+        "filter the rows returned"
+        where: weather_transitions_per_fish_bool_exp
+    ): [weather_transitions_per_fish!]!
+    "fetch aggregated fields from the table: \"weather_transitions_per_fish\""
+    weather_transitions_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [weather_transitions_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weather_transitions_per_fish_order_by!],
+        "filter the rows returned"
+        where: weather_transitions_per_fish_bool_exp
+    ): weather_transitions_per_fish_aggregate!
+    "fetch data from the table: \"weather_transitions_per_fish_per_spot\""
+    weather_transitions_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [weather_transitions_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weather_transitions_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: weather_transitions_per_fish_per_spot_bool_exp
+    ): [weather_transitions_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"weather_transitions_per_fish_per_spot\""
+    weather_transitions_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [weather_transitions_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weather_transitions_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: weather_transitions_per_fish_per_spot_bool_exp
+    ): weather_transitions_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"weathers_per_fish\""
+    weathers_per_fish(
+        "distinct select on columns"
+        distinct_on: [weathers_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weathers_per_fish_order_by!],
+        "filter the rows returned"
+        where: weathers_per_fish_bool_exp
+    ): [weathers_per_fish!]!
+    "fetch aggregated fields from the table: \"weathers_per_fish\""
+    weathers_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [weathers_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weathers_per_fish_order_by!],
+        "filter the rows returned"
+        where: weathers_per_fish_bool_exp
+    ): weathers_per_fish_aggregate!
+    "fetch data from the table: \"weathers_per_fish_per_spot\""
+    weathers_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [weathers_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weathers_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: weathers_per_fish_per_spot_bool_exp
+    ): [weathers_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"weathers_per_fish_per_spot\""
+    weathers_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [weathers_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weathers_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: weathers_per_fish_per_spot_bool_exp
+    ): weathers_per_fish_per_spot_aggregate!
+}
+
+"columns and relationships of \"snagging_per_fish\""
+type snagging_per_fish {
+    itemId: Int
+    occurences: bigint
+    snagging: Boolean
+}
+
+"aggregated selection of \"snagging_per_fish\""
+type snagging_per_fish_aggregate {
+    aggregate: snagging_per_fish_aggregate_fields
+    nodes: [snagging_per_fish!]!
+}
+
+"aggregate fields of \"snagging_per_fish\""
+type snagging_per_fish_aggregate_fields {
+    avg: snagging_per_fish_avg_fields
+    count(columns: [snagging_per_fish_select_column!], distinct: Boolean): Int!
+    max: snagging_per_fish_max_fields
+    min: snagging_per_fish_min_fields
+    stddev: snagging_per_fish_stddev_fields
+    stddev_pop: snagging_per_fish_stddev_pop_fields
+    stddev_samp: snagging_per_fish_stddev_samp_fields
+    sum: snagging_per_fish_sum_fields
+    var_pop: snagging_per_fish_var_pop_fields
+    var_samp: snagging_per_fish_var_samp_fields
+    variance: snagging_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type snagging_per_fish_avg_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate max on columns"
+type snagging_per_fish_max_fields {
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate min on columns"
+type snagging_per_fish_min_fields {
+    itemId: Int
+    occurences: bigint
+}
+
+"columns and relationships of \"snagging_per_fish_per_spot\""
+type snagging_per_fish_per_spot {
+    itemId: Int
+    occurences: bigint
+    snagging: Boolean
+    spot: Int
+}
+
+"aggregated selection of \"snagging_per_fish_per_spot\""
+type snagging_per_fish_per_spot_aggregate {
+    aggregate: snagging_per_fish_per_spot_aggregate_fields
+    nodes: [snagging_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"snagging_per_fish_per_spot\""
+type snagging_per_fish_per_spot_aggregate_fields {
+    avg: snagging_per_fish_per_spot_avg_fields
+    count(columns: [snagging_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: snagging_per_fish_per_spot_max_fields
+    min: snagging_per_fish_per_spot_min_fields
+    stddev: snagging_per_fish_per_spot_stddev_fields
+    stddev_pop: snagging_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: snagging_per_fish_per_spot_stddev_samp_fields
+    sum: snagging_per_fish_per_spot_sum_fields
+    var_pop: snagging_per_fish_per_spot_var_pop_fields
+    var_samp: snagging_per_fish_per_spot_var_samp_fields
+    variance: snagging_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type snagging_per_fish_per_spot_avg_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate max on columns"
+type snagging_per_fish_per_spot_max_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate min on columns"
+type snagging_per_fish_per_spot_min_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate stddev on columns"
+type snagging_per_fish_per_spot_stddev_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_pop on columns"
+type snagging_per_fish_per_spot_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev_samp on columns"
+type snagging_per_fish_per_spot_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate sum on columns"
+type snagging_per_fish_per_spot_sum_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"aggregate var_pop on columns"
+type snagging_per_fish_per_spot_var_pop_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate var_samp on columns"
+type snagging_per_fish_per_spot_var_samp_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate variance on columns"
+type snagging_per_fish_per_spot_variance_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+}
+
+"aggregate stddev on columns"
+type snagging_per_fish_stddev_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_pop on columns"
+type snagging_per_fish_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate stddev_samp on columns"
+type snagging_per_fish_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate sum on columns"
+type snagging_per_fish_sum_fields {
+    itemId: Int
+    occurences: bigint
+}
+
+"aggregate var_pop on columns"
+type snagging_per_fish_var_pop_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate var_samp on columns"
+type snagging_per_fish_var_samp_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"aggregate variance on columns"
+type snagging_per_fish_variance_fields {
+    itemId: Float
+    occurences: Float
+}
+
+"columns and relationships of \"spots_per_fish\""
+type spots_per_fish {
+    itemId: Int
+    spot: Int
+}
+
+"aggregated selection of \"spots_per_fish\""
+type spots_per_fish_aggregate {
+    aggregate: spots_per_fish_aggregate_fields
+    nodes: [spots_per_fish!]!
+}
+
+"aggregate fields of \"spots_per_fish\""
+type spots_per_fish_aggregate_fields {
+    avg: spots_per_fish_avg_fields
+    count(columns: [spots_per_fish_select_column!], distinct: Boolean): Int!
+    max: spots_per_fish_max_fields
+    min: spots_per_fish_min_fields
+    stddev: spots_per_fish_stddev_fields
+    stddev_pop: spots_per_fish_stddev_pop_fields
+    stddev_samp: spots_per_fish_stddev_samp_fields
+    sum: spots_per_fish_sum_fields
+    var_pop: spots_per_fish_var_pop_fields
+    var_samp: spots_per_fish_var_samp_fields
+    variance: spots_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type spots_per_fish_avg_fields {
+    itemId: Float
+    spot: Float
+}
+
+"aggregate max on columns"
+type spots_per_fish_max_fields {
+    itemId: Int
+    spot: Int
+}
+
+"aggregate min on columns"
+type spots_per_fish_min_fields {
+    itemId: Int
+    spot: Int
+}
+
+"aggregate stddev on columns"
+type spots_per_fish_stddev_fields {
+    itemId: Float
+    spot: Float
+}
+
+"aggregate stddev_pop on columns"
+type spots_per_fish_stddev_pop_fields {
+    itemId: Float
+    spot: Float
+}
+
+"aggregate stddev_samp on columns"
+type spots_per_fish_stddev_samp_fields {
+    itemId: Float
+    spot: Float
+}
+
+"aggregate sum on columns"
+type spots_per_fish_sum_fields {
+    itemId: Int
+    spot: Int
+}
+
+"aggregate var_pop on columns"
+type spots_per_fish_var_pop_fields {
+    itemId: Float
+    spot: Float
+}
+
+"aggregate var_samp on columns"
+type spots_per_fish_var_samp_fields {
+    itemId: Float
+    spot: Float
+}
+
+"aggregate variance on columns"
+type spots_per_fish_variance_fields {
+    itemId: Float
+    spot: Float
+}
+
+type subscription_root {
+    "fetch data from the table: \"allagan_reports\""
+    allagan_reports(
+        "distinct select on columns"
+        distinct_on: [allagan_reports_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [allagan_reports_order_by!],
+        "filter the rows returned"
+        where: allagan_reports_bool_exp
+    ): [allagan_reports!]!
+    "fetch aggregated fields from the table: \"allagan_reports\""
+    allagan_reports_aggregate(
+        "distinct select on columns"
+        distinct_on: [allagan_reports_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [allagan_reports_order_by!],
+        "filter the rows returned"
+        where: allagan_reports_bool_exp
+    ): allagan_reports_aggregate!
+    "fetch data from the table: \"allagan_reports\" using primary key columns"
+    allagan_reports_by_pk(uid: uuid!): allagan_reports
+    "fetch data from the table in a streaming manner: \"allagan_reports\""
+    allagan_reports_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [allagan_reports_stream_cursor_input]!,
+        "filter the rows returned"
+        where: allagan_reports_bool_exp
+    ): [allagan_reports!]!
+    "fetch data from the table: \"baits_per_fish\""
+    baits_per_fish(
+        "distinct select on columns"
+        distinct_on: [baits_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [baits_per_fish_order_by!],
+        "filter the rows returned"
+        where: baits_per_fish_bool_exp
+    ): [baits_per_fish!]!
+    "fetch aggregated fields from the table: \"baits_per_fish\""
+    baits_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [baits_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [baits_per_fish_order_by!],
+        "filter the rows returned"
+        where: baits_per_fish_bool_exp
+    ): baits_per_fish_aggregate!
+    "fetch data from the table: \"baits_per_fish_per_spot\""
+    baits_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [baits_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [baits_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: baits_per_fish_per_spot_bool_exp
+    ): [baits_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"baits_per_fish_per_spot\""
+    baits_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [baits_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [baits_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: baits_per_fish_per_spot_bool_exp
+    ): baits_per_fish_per_spot_aggregate!
+    "fetch data from the table in a streaming manner: \"baits_per_fish_per_spot\""
+    baits_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [baits_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: baits_per_fish_per_spot_bool_exp
+    ): [baits_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"baits_per_fish\""
+    baits_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [baits_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: baits_per_fish_bool_exp
+    ): [baits_per_fish!]!
+    "fetch data from the table: \"bite_time_per_fish\""
+    bite_time_per_fish(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_bool_exp
+    ): [bite_time_per_fish!]!
+    "fetch aggregated fields from the table: \"bite_time_per_fish\""
+    bite_time_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_bool_exp
+    ): bite_time_per_fish_aggregate!
+    "fetch data from the table: \"bite_time_per_fish_per_spot\""
+    bite_time_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_bool_exp
+    ): [bite_time_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"bite_time_per_fish_per_spot\""
+    bite_time_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_bool_exp
+    ): bite_time_per_fish_per_spot_aggregate!
+    "fetch data from the table: \"bite_time_per_fish_per_spot_per_bait\""
+    bite_time_per_fish_per_spot_per_bait(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_per_spot_per_bait_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_per_spot_per_bait_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_per_bait_bool_exp
+    ): [bite_time_per_fish_per_spot_per_bait!]!
+    "fetch aggregated fields from the table: \"bite_time_per_fish_per_spot_per_bait\""
+    bite_time_per_fish_per_spot_per_bait_aggregate(
+        "distinct select on columns"
+        distinct_on: [bite_time_per_fish_per_spot_per_bait_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bite_time_per_fish_per_spot_per_bait_order_by!],
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_per_bait_bool_exp
+    ): bite_time_per_fish_per_spot_per_bait_aggregate!
+    "fetch data from the table in a streaming manner: \"bite_time_per_fish_per_spot_per_bait\""
+    bite_time_per_fish_per_spot_per_bait_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [bite_time_per_fish_per_spot_per_bait_stream_cursor_input]!,
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_per_bait_bool_exp
+    ): [bite_time_per_fish_per_spot_per_bait!]!
+    "fetch data from the table in a streaming manner: \"bite_time_per_fish_per_spot\""
+    bite_time_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [bite_time_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: bite_time_per_fish_per_spot_bool_exp
+    ): [bite_time_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"bite_time_per_fish\""
+    bite_time_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [bite_time_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: bite_time_per_fish_bool_exp
+    ): [bite_time_per_fish!]!
+    "fetch data from the table: \"bnpc\""
+    bnpc(
+        "distinct select on columns"
+        distinct_on: [bnpc_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [bnpc_order_by!],
+        "filter the rows returned"
+        where: bnpc_bool_exp
+    ): [bnpc!]!
+    "fetch data from the table in a streaming manner: \"bnpc\""
+    bnpc_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [bnpc_stream_cursor_input]!,
+        "filter the rows returned"
+        where: bnpc_bool_exp
+    ): [bnpc!]!
+    "fetch data from the table: \"etimes_per_fish\""
+    etimes_per_fish(
+        "distinct select on columns"
+        distinct_on: [etimes_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [etimes_per_fish_order_by!],
+        "filter the rows returned"
+        where: etimes_per_fish_bool_exp
+    ): [etimes_per_fish!]!
+    "fetch aggregated fields from the table: \"etimes_per_fish\""
+    etimes_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [etimes_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [etimes_per_fish_order_by!],
+        "filter the rows returned"
+        where: etimes_per_fish_bool_exp
+    ): etimes_per_fish_aggregate!
+    "fetch data from the table: \"etimes_per_fish_per_spot\""
+    etimes_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [etimes_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [etimes_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: etimes_per_fish_per_spot_bool_exp
+    ): [etimes_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"etimes_per_fish_per_spot\""
+    etimes_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [etimes_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [etimes_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: etimes_per_fish_per_spot_bool_exp
+    ): etimes_per_fish_per_spot_aggregate!
+    "fetch data from the table in a streaming manner: \"etimes_per_fish_per_spot\""
+    etimes_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [etimes_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: etimes_per_fish_per_spot_bool_exp
+    ): [etimes_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"etimes_per_fish\""
+    etimes_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [etimes_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: etimes_per_fish_bool_exp
+    ): [etimes_per_fish!]!
+    "fetch data from the table: \"fish_eyes_per_fish\""
+    fish_eyes_per_fish(
+        "distinct select on columns"
+        distinct_on: [fish_eyes_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fish_eyes_per_fish_order_by!],
+        "filter the rows returned"
+        where: fish_eyes_per_fish_bool_exp
+    ): [fish_eyes_per_fish!]!
+    "fetch aggregated fields from the table: \"fish_eyes_per_fish\""
+    fish_eyes_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [fish_eyes_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fish_eyes_per_fish_order_by!],
+        "filter the rows returned"
+        where: fish_eyes_per_fish_bool_exp
+    ): fish_eyes_per_fish_aggregate!
+    "fetch data from the table: \"fish_eyes_per_fish_per_spot\""
+    fish_eyes_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [fish_eyes_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fish_eyes_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: fish_eyes_per_fish_per_spot_bool_exp
+    ): [fish_eyes_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"fish_eyes_per_fish_per_spot\""
+    fish_eyes_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [fish_eyes_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fish_eyes_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: fish_eyes_per_fish_per_spot_bool_exp
+    ): fish_eyes_per_fish_per_spot_aggregate!
+    "fetch data from the table in a streaming manner: \"fish_eyes_per_fish_per_spot\""
+    fish_eyes_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [fish_eyes_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: fish_eyes_per_fish_per_spot_bool_exp
+    ): [fish_eyes_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"fish_eyes_per_fish\""
+    fish_eyes_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [fish_eyes_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: fish_eyes_per_fish_bool_exp
+    ): [fish_eyes_per_fish!]!
+    "fetch data from the table: \"fishingresults\""
+    fishingresults(
+        "distinct select on columns"
+        distinct_on: [fishingresults_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [fishingresults_order_by!],
+        "filter the rows returned"
+        where: fishingresults_bool_exp
+    ): [fishingresults!]!
+    "fetch data from the table in a streaming manner: \"fishingresults\""
+    fishingresults_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [fishingresults_stream_cursor_input]!,
+        "filter the rows returned"
+        where: fishingresults_bool_exp
+    ): [fishingresults!]!
+    "fetch data from the table: \"hooksets_per_fish\""
+    hooksets_per_fish(
+        "distinct select on columns"
+        distinct_on: [hooksets_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [hooksets_per_fish_order_by!],
+        "filter the rows returned"
+        where: hooksets_per_fish_bool_exp
+    ): [hooksets_per_fish!]!
+    "fetch aggregated fields from the table: \"hooksets_per_fish\""
+    hooksets_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [hooksets_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [hooksets_per_fish_order_by!],
+        "filter the rows returned"
+        where: hooksets_per_fish_bool_exp
+    ): hooksets_per_fish_aggregate!
+    "fetch data from the table: \"hooksets_per_fish_per_spot\""
+    hooksets_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [hooksets_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [hooksets_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: hooksets_per_fish_per_spot_bool_exp
+    ): [hooksets_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"hooksets_per_fish_per_spot\""
+    hooksets_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [hooksets_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [hooksets_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: hooksets_per_fish_per_spot_bool_exp
+    ): hooksets_per_fish_per_spot_aggregate!
+    "fetch data from the table in a streaming manner: \"hooksets_per_fish_per_spot\""
+    hooksets_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [hooksets_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: hooksets_per_fish_per_spot_bool_exp
+    ): [hooksets_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"hooksets_per_fish\""
+    hooksets_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [hooksets_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: hooksets_per_fish_bool_exp
+    ): [hooksets_per_fish!]!
+    "fetch data from the table: \"snagging_per_fish\""
+    snagging_per_fish(
+        "distinct select on columns"
+        distinct_on: [snagging_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [snagging_per_fish_order_by!],
+        "filter the rows returned"
+        where: snagging_per_fish_bool_exp
+    ): [snagging_per_fish!]!
+    "fetch aggregated fields from the table: \"snagging_per_fish\""
+    snagging_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [snagging_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [snagging_per_fish_order_by!],
+        "filter the rows returned"
+        where: snagging_per_fish_bool_exp
+    ): snagging_per_fish_aggregate!
+    "fetch data from the table: \"snagging_per_fish_per_spot\""
+    snagging_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [snagging_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [snagging_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: snagging_per_fish_per_spot_bool_exp
+    ): [snagging_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"snagging_per_fish_per_spot\""
+    snagging_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [snagging_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [snagging_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: snagging_per_fish_per_spot_bool_exp
+    ): snagging_per_fish_per_spot_aggregate!
+    "fetch data from the table in a streaming manner: \"snagging_per_fish_per_spot\""
+    snagging_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [snagging_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: snagging_per_fish_per_spot_bool_exp
+    ): [snagging_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"snagging_per_fish\""
+    snagging_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [snagging_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: snagging_per_fish_bool_exp
+    ): [snagging_per_fish!]!
+    "fetch data from the table: \"spots_per_fish\""
+    spots_per_fish(
+        "distinct select on columns"
+        distinct_on: [spots_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [spots_per_fish_order_by!],
+        "filter the rows returned"
+        where: spots_per_fish_bool_exp
+    ): [spots_per_fish!]!
+    "fetch aggregated fields from the table: \"spots_per_fish\""
+    spots_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [spots_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [spots_per_fish_order_by!],
+        "filter the rows returned"
+        where: spots_per_fish_bool_exp
+    ): spots_per_fish_aggregate!
+    "fetch data from the table in a streaming manner: \"spots_per_fish\""
+    spots_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [spots_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: spots_per_fish_bool_exp
+    ): [spots_per_fish!]!
+    "fetch data from the table: \"tug_per_fish\""
+    tug_per_fish(
+        "distinct select on columns"
+        distinct_on: [tug_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tug_per_fish_order_by!],
+        "filter the rows returned"
+        where: tug_per_fish_bool_exp
+    ): [tug_per_fish!]!
+    "fetch aggregated fields from the table: \"tug_per_fish\""
+    tug_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [tug_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tug_per_fish_order_by!],
+        "filter the rows returned"
+        where: tug_per_fish_bool_exp
+    ): tug_per_fish_aggregate!
+    "fetch data from the table: \"tug_per_fish_per_spot\""
+    tug_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [tug_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tug_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: tug_per_fish_per_spot_bool_exp
+    ): [tug_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"tug_per_fish_per_spot\""
+    tug_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [tug_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tug_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: tug_per_fish_per_spot_bool_exp
+    ): tug_per_fish_per_spot_aggregate!
+    "fetch data from the table in a streaming manner: \"tug_per_fish_per_spot\""
+    tug_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [tug_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: tug_per_fish_per_spot_bool_exp
+    ): [tug_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"tug_per_fish\""
+    tug_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [tug_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: tug_per_fish_bool_exp
+    ): [tug_per_fish!]!
+    "fetch data from the table: \"weather_transitions_per_fish\""
+    weather_transitions_per_fish(
+        "distinct select on columns"
+        distinct_on: [weather_transitions_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weather_transitions_per_fish_order_by!],
+        "filter the rows returned"
+        where: weather_transitions_per_fish_bool_exp
+    ): [weather_transitions_per_fish!]!
+    "fetch aggregated fields from the table: \"weather_transitions_per_fish\""
+    weather_transitions_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [weather_transitions_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weather_transitions_per_fish_order_by!],
+        "filter the rows returned"
+        where: weather_transitions_per_fish_bool_exp
+    ): weather_transitions_per_fish_aggregate!
+    "fetch data from the table: \"weather_transitions_per_fish_per_spot\""
+    weather_transitions_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [weather_transitions_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weather_transitions_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: weather_transitions_per_fish_per_spot_bool_exp
+    ): [weather_transitions_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"weather_transitions_per_fish_per_spot\""
+    weather_transitions_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [weather_transitions_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weather_transitions_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: weather_transitions_per_fish_per_spot_bool_exp
+    ): weather_transitions_per_fish_per_spot_aggregate!
+    "fetch data from the table in a streaming manner: \"weather_transitions_per_fish_per_spot\""
+    weather_transitions_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [weather_transitions_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: weather_transitions_per_fish_per_spot_bool_exp
+    ): [weather_transitions_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"weather_transitions_per_fish\""
+    weather_transitions_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [weather_transitions_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: weather_transitions_per_fish_bool_exp
+    ): [weather_transitions_per_fish!]!
+    "fetch data from the table: \"weathers_per_fish\""
+    weathers_per_fish(
+        "distinct select on columns"
+        distinct_on: [weathers_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weathers_per_fish_order_by!],
+        "filter the rows returned"
+        where: weathers_per_fish_bool_exp
+    ): [weathers_per_fish!]!
+    "fetch aggregated fields from the table: \"weathers_per_fish\""
+    weathers_per_fish_aggregate(
+        "distinct select on columns"
+        distinct_on: [weathers_per_fish_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weathers_per_fish_order_by!],
+        "filter the rows returned"
+        where: weathers_per_fish_bool_exp
+    ): weathers_per_fish_aggregate!
+    "fetch data from the table: \"weathers_per_fish_per_spot\""
+    weathers_per_fish_per_spot(
+        "distinct select on columns"
+        distinct_on: [weathers_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weathers_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: weathers_per_fish_per_spot_bool_exp
+    ): [weathers_per_fish_per_spot!]!
+    "fetch aggregated fields from the table: \"weathers_per_fish_per_spot\""
+    weathers_per_fish_per_spot_aggregate(
+        "distinct select on columns"
+        distinct_on: [weathers_per_fish_per_spot_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [weathers_per_fish_per_spot_order_by!],
+        "filter the rows returned"
+        where: weathers_per_fish_per_spot_bool_exp
+    ): weathers_per_fish_per_spot_aggregate!
+    "fetch data from the table in a streaming manner: \"weathers_per_fish_per_spot\""
+    weathers_per_fish_per_spot_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [weathers_per_fish_per_spot_stream_cursor_input]!,
+        "filter the rows returned"
+        where: weathers_per_fish_per_spot_bool_exp
+    ): [weathers_per_fish_per_spot!]!
+    "fetch data from the table in a streaming manner: \"weathers_per_fish\""
+    weathers_per_fish_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [weathers_per_fish_stream_cursor_input]!,
+        "filter the rows returned"
+        where: weathers_per_fish_bool_exp
+    ): [weathers_per_fish!]!
+}
+
+"columns and relationships of \"tug_per_fish\""
+type tug_per_fish {
+    itemId: Int
+    occurences: bigint
+    tug: Int
+}
+
+"aggregated selection of \"tug_per_fish\""
+type tug_per_fish_aggregate {
+    aggregate: tug_per_fish_aggregate_fields
+    nodes: [tug_per_fish!]!
+}
+
+"aggregate fields of \"tug_per_fish\""
+type tug_per_fish_aggregate_fields {
+    avg: tug_per_fish_avg_fields
+    count(columns: [tug_per_fish_select_column!], distinct: Boolean): Int!
+    max: tug_per_fish_max_fields
+    min: tug_per_fish_min_fields
+    stddev: tug_per_fish_stddev_fields
+    stddev_pop: tug_per_fish_stddev_pop_fields
+    stddev_samp: tug_per_fish_stddev_samp_fields
+    sum: tug_per_fish_sum_fields
+    var_pop: tug_per_fish_var_pop_fields
+    var_samp: tug_per_fish_var_samp_fields
+    variance: tug_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type tug_per_fish_avg_fields {
+    itemId: Float
+    occurences: Float
+    tug: Float
+}
+
+"aggregate max on columns"
+type tug_per_fish_max_fields {
+    itemId: Int
+    occurences: bigint
+    tug: Int
+}
+
+"aggregate min on columns"
+type tug_per_fish_min_fields {
+    itemId: Int
+    occurences: bigint
+    tug: Int
+}
+
+"columns and relationships of \"tug_per_fish_per_spot\""
+type tug_per_fish_per_spot {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    tug: Int
+}
+
+"aggregated selection of \"tug_per_fish_per_spot\""
+type tug_per_fish_per_spot_aggregate {
+    aggregate: tug_per_fish_per_spot_aggregate_fields
+    nodes: [tug_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"tug_per_fish_per_spot\""
+type tug_per_fish_per_spot_aggregate_fields {
+    avg: tug_per_fish_per_spot_avg_fields
+    count(columns: [tug_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: tug_per_fish_per_spot_max_fields
+    min: tug_per_fish_per_spot_min_fields
+    stddev: tug_per_fish_per_spot_stddev_fields
+    stddev_pop: tug_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: tug_per_fish_per_spot_stddev_samp_fields
+    sum: tug_per_fish_per_spot_sum_fields
+    var_pop: tug_per_fish_per_spot_var_pop_fields
+    var_samp: tug_per_fish_per_spot_var_samp_fields
+    variance: tug_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type tug_per_fish_per_spot_avg_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    tug: Float
+}
+
+"aggregate max on columns"
+type tug_per_fish_per_spot_max_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    tug: Int
+}
+
+"aggregate min on columns"
+type tug_per_fish_per_spot_min_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    tug: Int
+}
+
+"aggregate stddev on columns"
+type tug_per_fish_per_spot_stddev_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    tug: Float
+}
+
+"aggregate stddev_pop on columns"
+type tug_per_fish_per_spot_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    tug: Float
+}
+
+"aggregate stddev_samp on columns"
+type tug_per_fish_per_spot_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    tug: Float
+}
+
+"aggregate sum on columns"
+type tug_per_fish_per_spot_sum_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    tug: Int
+}
+
+"aggregate var_pop on columns"
+type tug_per_fish_per_spot_var_pop_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    tug: Float
+}
+
+"aggregate var_samp on columns"
+type tug_per_fish_per_spot_var_samp_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    tug: Float
+}
+
+"aggregate variance on columns"
+type tug_per_fish_per_spot_variance_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    tug: Float
+}
+
+"aggregate stddev on columns"
+type tug_per_fish_stddev_fields {
+    itemId: Float
+    occurences: Float
+    tug: Float
+}
+
+"aggregate stddev_pop on columns"
+type tug_per_fish_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+    tug: Float
+}
+
+"aggregate stddev_samp on columns"
+type tug_per_fish_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+    tug: Float
+}
+
+"aggregate sum on columns"
+type tug_per_fish_sum_fields {
+    itemId: Int
+    occurences: bigint
+    tug: Int
+}
+
+"aggregate var_pop on columns"
+type tug_per_fish_var_pop_fields {
+    itemId: Float
+    occurences: Float
+    tug: Float
+}
+
+"aggregate var_samp on columns"
+type tug_per_fish_var_samp_fields {
+    itemId: Float
+    occurences: Float
+    tug: Float
+}
+
+"aggregate variance on columns"
+type tug_per_fish_variance_fields {
+    itemId: Float
+    occurences: Float
+    tug: Float
+}
+
+"columns and relationships of \"weather_transitions_per_fish\""
+type weather_transitions_per_fish {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    weatherId: Int
+}
+
+"aggregated selection of \"weather_transitions_per_fish\""
+type weather_transitions_per_fish_aggregate {
+    aggregate: weather_transitions_per_fish_aggregate_fields
+    nodes: [weather_transitions_per_fish!]!
+}
+
+"aggregate fields of \"weather_transitions_per_fish\""
+type weather_transitions_per_fish_aggregate_fields {
+    avg: weather_transitions_per_fish_avg_fields
+    count(columns: [weather_transitions_per_fish_select_column!], distinct: Boolean): Int!
+    max: weather_transitions_per_fish_max_fields
+    min: weather_transitions_per_fish_min_fields
+    stddev: weather_transitions_per_fish_stddev_fields
+    stddev_pop: weather_transitions_per_fish_stddev_pop_fields
+    stddev_samp: weather_transitions_per_fish_stddev_samp_fields
+    sum: weather_transitions_per_fish_sum_fields
+    var_pop: weather_transitions_per_fish_var_pop_fields
+    var_samp: weather_transitions_per_fish_var_samp_fields
+    variance: weather_transitions_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type weather_transitions_per_fish_avg_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    weatherId: Float
+}
+
+"aggregate max on columns"
+type weather_transitions_per_fish_max_fields {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    weatherId: Int
+}
+
+"aggregate min on columns"
+type weather_transitions_per_fish_min_fields {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    weatherId: Int
+}
+
+"columns and relationships of \"weather_transitions_per_fish_per_spot\""
+type weather_transitions_per_fish_per_spot {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    spot: Int
+    weatherId: Int
+}
+
+"aggregated selection of \"weather_transitions_per_fish_per_spot\""
+type weather_transitions_per_fish_per_spot_aggregate {
+    aggregate: weather_transitions_per_fish_per_spot_aggregate_fields
+    nodes: [weather_transitions_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"weather_transitions_per_fish_per_spot\""
+type weather_transitions_per_fish_per_spot_aggregate_fields {
+    avg: weather_transitions_per_fish_per_spot_avg_fields
+    count(columns: [weather_transitions_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: weather_transitions_per_fish_per_spot_max_fields
+    min: weather_transitions_per_fish_per_spot_min_fields
+    stddev: weather_transitions_per_fish_per_spot_stddev_fields
+    stddev_pop: weather_transitions_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: weather_transitions_per_fish_per_spot_stddev_samp_fields
+    sum: weather_transitions_per_fish_per_spot_sum_fields
+    var_pop: weather_transitions_per_fish_per_spot_var_pop_fields
+    var_samp: weather_transitions_per_fish_per_spot_var_samp_fields
+    variance: weather_transitions_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type weather_transitions_per_fish_per_spot_avg_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate max on columns"
+type weather_transitions_per_fish_per_spot_max_fields {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    spot: Int
+    weatherId: Int
+}
+
+"aggregate min on columns"
+type weather_transitions_per_fish_per_spot_min_fields {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    spot: Int
+    weatherId: Int
+}
+
+"aggregate stddev on columns"
+type weather_transitions_per_fish_per_spot_stddev_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate stddev_pop on columns"
+type weather_transitions_per_fish_per_spot_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate stddev_samp on columns"
+type weather_transitions_per_fish_per_spot_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate sum on columns"
+type weather_transitions_per_fish_per_spot_sum_fields {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    spot: Int
+    weatherId: Int
+}
+
+"aggregate var_pop on columns"
+type weather_transitions_per_fish_per_spot_var_pop_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate var_samp on columns"
+type weather_transitions_per_fish_per_spot_var_samp_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate variance on columns"
+type weather_transitions_per_fish_per_spot_variance_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate stddev on columns"
+type weather_transitions_per_fish_stddev_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    weatherId: Float
+}
+
+"aggregate stddev_pop on columns"
+type weather_transitions_per_fish_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    weatherId: Float
+}
+
+"aggregate stddev_samp on columns"
+type weather_transitions_per_fish_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    weatherId: Float
+}
+
+"aggregate sum on columns"
+type weather_transitions_per_fish_sum_fields {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    weatherId: Int
+}
+
+"aggregate var_pop on columns"
+type weather_transitions_per_fish_var_pop_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    weatherId: Float
+}
+
+"aggregate var_samp on columns"
+type weather_transitions_per_fish_var_samp_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    weatherId: Float
+}
+
+"aggregate variance on columns"
+type weather_transitions_per_fish_variance_fields {
+    itemId: Float
+    occurences: Float
+    previousWeatherId: Float
+    weatherId: Float
+}
+
+"columns and relationships of \"weathers_per_fish\""
+type weathers_per_fish {
+    itemId: Int
+    occurences: bigint
+    weatherId: Int
+}
+
+"aggregated selection of \"weathers_per_fish\""
+type weathers_per_fish_aggregate {
+    aggregate: weathers_per_fish_aggregate_fields
+    nodes: [weathers_per_fish!]!
+}
+
+"aggregate fields of \"weathers_per_fish\""
+type weathers_per_fish_aggregate_fields {
+    avg: weathers_per_fish_avg_fields
+    count(columns: [weathers_per_fish_select_column!], distinct: Boolean): Int!
+    max: weathers_per_fish_max_fields
+    min: weathers_per_fish_min_fields
+    stddev: weathers_per_fish_stddev_fields
+    stddev_pop: weathers_per_fish_stddev_pop_fields
+    stddev_samp: weathers_per_fish_stddev_samp_fields
+    sum: weathers_per_fish_sum_fields
+    var_pop: weathers_per_fish_var_pop_fields
+    var_samp: weathers_per_fish_var_samp_fields
+    variance: weathers_per_fish_variance_fields
+}
+
+"aggregate avg on columns"
+type weathers_per_fish_avg_fields {
+    itemId: Float
+    occurences: Float
+    weatherId: Float
+}
+
+"aggregate max on columns"
+type weathers_per_fish_max_fields {
+    itemId: Int
+    occurences: bigint
+    weatherId: Int
+}
+
+"aggregate min on columns"
+type weathers_per_fish_min_fields {
+    itemId: Int
+    occurences: bigint
+    weatherId: Int
+}
+
+"columns and relationships of \"weathers_per_fish_per_spot\""
+type weathers_per_fish_per_spot {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    weatherId: Int
+}
+
+"aggregated selection of \"weathers_per_fish_per_spot\""
+type weathers_per_fish_per_spot_aggregate {
+    aggregate: weathers_per_fish_per_spot_aggregate_fields
+    nodes: [weathers_per_fish_per_spot!]!
+}
+
+"aggregate fields of \"weathers_per_fish_per_spot\""
+type weathers_per_fish_per_spot_aggregate_fields {
+    avg: weathers_per_fish_per_spot_avg_fields
+    count(columns: [weathers_per_fish_per_spot_select_column!], distinct: Boolean): Int!
+    max: weathers_per_fish_per_spot_max_fields
+    min: weathers_per_fish_per_spot_min_fields
+    stddev: weathers_per_fish_per_spot_stddev_fields
+    stddev_pop: weathers_per_fish_per_spot_stddev_pop_fields
+    stddev_samp: weathers_per_fish_per_spot_stddev_samp_fields
+    sum: weathers_per_fish_per_spot_sum_fields
+    var_pop: weathers_per_fish_per_spot_var_pop_fields
+    var_samp: weathers_per_fish_per_spot_var_samp_fields
+    variance: weathers_per_fish_per_spot_variance_fields
+}
+
+"aggregate avg on columns"
+type weathers_per_fish_per_spot_avg_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate max on columns"
+type weathers_per_fish_per_spot_max_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    weatherId: Int
+}
+
+"aggregate min on columns"
+type weathers_per_fish_per_spot_min_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    weatherId: Int
+}
+
+"aggregate stddev on columns"
+type weathers_per_fish_per_spot_stddev_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate stddev_pop on columns"
+type weathers_per_fish_per_spot_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate stddev_samp on columns"
+type weathers_per_fish_per_spot_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate sum on columns"
+type weathers_per_fish_per_spot_sum_fields {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    weatherId: Int
+}
+
+"aggregate var_pop on columns"
+type weathers_per_fish_per_spot_var_pop_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate var_samp on columns"
+type weathers_per_fish_per_spot_var_samp_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate variance on columns"
+type weathers_per_fish_per_spot_variance_fields {
+    itemId: Float
+    occurences: Float
+    spot: Float
+    weatherId: Float
+}
+
+"aggregate stddev on columns"
+type weathers_per_fish_stddev_fields {
+    itemId: Float
+    occurences: Float
+    weatherId: Float
+}
+
+"aggregate stddev_pop on columns"
+type weathers_per_fish_stddev_pop_fields {
+    itemId: Float
+    occurences: Float
+    weatherId: Float
+}
+
+"aggregate stddev_samp on columns"
+type weathers_per_fish_stddev_samp_fields {
+    itemId: Float
+    occurences: Float
+    weatherId: Float
+}
+
+"aggregate sum on columns"
+type weathers_per_fish_sum_fields {
+    itemId: Int
+    occurences: bigint
+    weatherId: Int
+}
+
+"aggregate var_pop on columns"
+type weathers_per_fish_var_pop_fields {
+    itemId: Float
+    occurences: Float
+    weatherId: Float
+}
+
+"aggregate var_samp on columns"
+type weathers_per_fish_var_samp_fields {
+    itemId: Float
+    occurences: Float
+    weatherId: Float
+}
+
+"aggregate variance on columns"
+type weathers_per_fish_variance_fields {
+    itemId: Float
+    occurences: Float
+    weatherId: Float
+}
+
+"select columns of table \"allagan_reports\""
+enum allagan_reports_select_column {
+    "column name"
+    applied
+    "column name"
+    created_at
+    "column name"
+    data
+    "column name"
+    gt
+    "column name"
+    itemId
+    "column name"
+    reporter
+    "column name"
+    reviewer
+    "column name"
+    source
+    "column name"
+    uid
+    "column name"
+    updated_at
+}
+
+"select columns of table \"baits_per_fish_per_spot\""
+enum baits_per_fish_per_spot_select_column {
+    "column name"
+    baitId
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    spot
+}
+
+"select columns of table \"baits_per_fish\""
+enum baits_per_fish_select_column {
+    "column name"
+    baitId
+    "column name"
+    itemId
+    "column name"
+    occurences
+}
+
+"select columns of table \"bite_time_per_fish_per_spot_per_bait\""
+enum bite_time_per_fish_per_spot_per_bait_select_column {
+    "column name"
+    baitId
+    "column name"
+    flooredBiteTime
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    spot
+}
+
+"select columns of table \"bite_time_per_fish_per_spot\""
+enum bite_time_per_fish_per_spot_select_column {
+    "column name"
+    flooredBiteTime
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    spot
+}
+
+"select columns of table \"bite_time_per_fish\""
+enum bite_time_per_fish_select_column {
+    "column name"
+    flooredBiteTime
+    "column name"
+    itemId
+    "column name"
+    occurences
+}
+
+"select columns of table \"bnpc\""
+enum bnpc_select_column {
+    "column name"
+    bnpcBase
+    "column name"
+    bnpcName
+}
+
+"ordering argument of a cursor"
+enum cursor_ordering {
+    "ascending ordering of the cursor"
+    ASC
+    "descending ordering of the cursor"
+    DESC
+}
+
+"select columns of table \"etimes_per_fish_per_spot\""
+enum etimes_per_fish_per_spot_select_column {
+    "column name"
+    etime
+    "column name"
+    fishEyes
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    spot
+}
+
+"select columns of table \"etimes_per_fish\""
+enum etimes_per_fish_select_column {
+    "column name"
+    etime
+    "column name"
+    itemId
+    "column name"
+    occurences
+}
+
+"select columns of table \"fish_eyes_per_fish_per_spot\""
+enum fish_eyes_per_fish_per_spot_select_column {
+    "column name"
+    fishEyes
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    spot
+}
+
+"select columns of table \"fish_eyes_per_fish\""
+enum fish_eyes_per_fish_select_column {
+    "column name"
+    fishEyes
+    "column name"
+    itemId
+    "column name"
+    occurences
+}
+
+"select columns of table \"fishingresults\""
+enum fishingresults_select_column {
+    "column name"
+    baitId
+    "column name"
+    biteTime
+    "column name"
+    chum
+    "column name"
+    date
+    "column name"
+    etime
+    "column name"
+    fishEyes
+    "column name"
+    gathering
+    "column name"
+    gp
+    "column name"
+    hookset
+    "column name"
+    hq
+    "column name"
+    itemId
+    "column name"
+    mapId
+    "column name"
+    mooch
+    "column name"
+    oceanTime
+    "column name"
+    patience
+    "column name"
+    perception
+    "column name"
+    previousWeatherId
+    "column name"
+    size
+    "column name"
+    snagging
+    "column name"
+    spot
+    "column name"
+    trainId
+    "column name"
+    tug
+    "column name"
+    userId
+    "column name"
+    weatherId
+}
+
+"select columns of table \"hooksets_per_fish_per_spot\""
+enum hooksets_per_fish_per_spot_select_column {
+    "column name"
+    hookset
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    spot
+}
+
+"select columns of table \"hooksets_per_fish\""
+enum hooksets_per_fish_select_column {
+    "column name"
+    hookset
+    "column name"
+    itemId
+    "column name"
+    occurences
+}
+
+"column ordering options"
+enum order_by {
+    "in ascending order, nulls last"
+    asc
+    "in ascending order, nulls first"
+    asc_nulls_first
+    "in ascending order, nulls last"
+    asc_nulls_last
+    "in descending order, nulls first"
+    desc
+    "in descending order, nulls first"
+    desc_nulls_first
+    "in descending order, nulls last"
+    desc_nulls_last
+}
+
+"select columns of table \"snagging_per_fish_per_spot\""
+enum snagging_per_fish_per_spot_select_column {
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    snagging
+    "column name"
+    spot
+}
+
+"select columns of table \"snagging_per_fish\""
+enum snagging_per_fish_select_column {
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    snagging
+}
+
+"select columns of table \"spots_per_fish\""
+enum spots_per_fish_select_column {
+    "column name"
+    itemId
+    "column name"
+    spot
+}
+
+"select columns of table \"tug_per_fish_per_spot\""
+enum tug_per_fish_per_spot_select_column {
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    spot
+    "column name"
+    tug
+}
+
+"select columns of table \"tug_per_fish\""
+enum tug_per_fish_select_column {
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    tug
+}
+
+"select columns of table \"weather_transitions_per_fish_per_spot\""
+enum weather_transitions_per_fish_per_spot_select_column {
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    previousWeatherId
+    "column name"
+    spot
+    "column name"
+    weatherId
+}
+
+"select columns of table \"weather_transitions_per_fish\""
+enum weather_transitions_per_fish_select_column {
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    previousWeatherId
+    "column name"
+    weatherId
+}
+
+"select columns of table \"weathers_per_fish_per_spot\""
+enum weathers_per_fish_per_spot_select_column {
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    spot
+    "column name"
+    weatherId
+}
+
+"select columns of table \"weathers_per_fish\""
+enum weathers_per_fish_select_column {
+    "column name"
+    itemId
+    "column name"
+    occurences
+    "column name"
+    weatherId
+}
+
+scalar bigint
+
+scalar jsonb
+
+scalar numeric
+
+scalar timestamptz
+
+scalar uuid
+
+"Boolean expression to compare columns of type \"Boolean\". All fields are combined with logical 'AND'."
+input Boolean_comparison_exp {
+    _eq: Boolean
+    _gt: Boolean
+    _gte: Boolean
+    _in: [Boolean!]
+    _is_null: Boolean
+    _lt: Boolean
+    _lte: Boolean
+    _neq: Boolean
+    _nin: [Boolean!]
+}
+
+"Boolean expression to compare columns of type \"Int\". All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"Boolean expression to compare columns of type \"String\". All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    "does the column match the given case-insensitive pattern"
+    _ilike: String
+    _in: [String!]
+    "does the column match the given POSIX regular expression, case insensitive"
+    _iregex: String
+    _is_null: Boolean
+    "does the column match the given pattern"
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    "does the column NOT match the given case-insensitive pattern"
+    _nilike: String
+    _nin: [String!]
+    "does the column NOT match the given POSIX regular expression, case insensitive"
+    _niregex: String
+    "does the column NOT match the given pattern"
+    _nlike: String
+    "does the column NOT match the given POSIX regular expression, case sensitive"
+    _nregex: String
+    "does the column NOT match the given SQL regular expression"
+    _nsimilar: String
+    "does the column match the given POSIX regular expression, case sensitive"
+    _regex: String
+    "does the column match the given SQL regular expression"
+    _similar: String
+}
+
+"Boolean expression to filter rows from the table \"allagan_reports\". All fields are combined with a logical 'AND'."
+input allagan_reports_bool_exp {
+    _and: [allagan_reports_bool_exp!]
+    _not: allagan_reports_bool_exp
+    _or: [allagan_reports_bool_exp!]
+    applied: Boolean_comparison_exp
+    created_at: timestamptz_comparison_exp
+    data: jsonb_comparison_exp
+    gt: Boolean_comparison_exp
+    itemId: Int_comparison_exp
+    reporter: String_comparison_exp
+    reviewer: String_comparison_exp
+    source: String_comparison_exp
+    uid: uuid_comparison_exp
+    updated_at: timestamptz_comparison_exp
+}
+
+"Ordering options when selecting data from \"allagan_reports\"."
+input allagan_reports_order_by {
+    applied: order_by
+    created_at: order_by
+    data: order_by
+    gt: order_by
+    itemId: order_by
+    reporter: order_by
+    reviewer: order_by
+    source: order_by
+    uid: order_by
+    updated_at: order_by
+}
+
+"Streaming cursor of the table \"allagan_reports\""
+input allagan_reports_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: allagan_reports_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input allagan_reports_stream_cursor_value_input {
+    applied: Boolean
+    created_at: timestamptz
+    data: jsonb
+    gt: Boolean
+    itemId: Int
+    reporter: String
+    reviewer: String
+    source: String
+    uid: uuid
+    updated_at: timestamptz
+}
+
+"Boolean expression to filter rows from the table \"baits_per_fish\". All fields are combined with a logical 'AND'."
+input baits_per_fish_bool_exp {
+    _and: [baits_per_fish_bool_exp!]
+    _not: baits_per_fish_bool_exp
+    _or: [baits_per_fish_bool_exp!]
+    baitId: Int_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+}
+
+"Ordering options when selecting data from \"baits_per_fish\"."
+input baits_per_fish_order_by {
+    baitId: order_by
+    itemId: order_by
+    occurences: order_by
+}
+
+"Boolean expression to filter rows from the table \"baits_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input baits_per_fish_per_spot_bool_exp {
+    _and: [baits_per_fish_per_spot_bool_exp!]
+    _not: baits_per_fish_per_spot_bool_exp
+    _or: [baits_per_fish_per_spot_bool_exp!]
+    baitId: Int_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    spot: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"baits_per_fish_per_spot\"."
+input baits_per_fish_per_spot_order_by {
+    baitId: order_by
+    itemId: order_by
+    occurences: order_by
+    spot: order_by
+}
+
+"Streaming cursor of the table \"baits_per_fish_per_spot\""
+input baits_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: baits_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input baits_per_fish_per_spot_stream_cursor_value_input {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"Streaming cursor of the table \"baits_per_fish\""
+input baits_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: baits_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input baits_per_fish_stream_cursor_value_input {
+    baitId: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"Boolean expression to compare columns of type \"bigint\". All fields are combined with logical 'AND'."
+input bigint_comparison_exp {
+    _eq: bigint
+    _gt: bigint
+    _gte: bigint
+    _in: [bigint!]
+    _is_null: Boolean
+    _lt: bigint
+    _lte: bigint
+    _neq: bigint
+    _nin: [bigint!]
+}
+
+"Boolean expression to filter rows from the table \"bite_time_per_fish\". All fields are combined with a logical 'AND'."
+input bite_time_per_fish_bool_exp {
+    _and: [bite_time_per_fish_bool_exp!]
+    _not: bite_time_per_fish_bool_exp
+    _or: [bite_time_per_fish_bool_exp!]
+    flooredBiteTime: Int_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+}
+
+"Ordering options when selecting data from \"bite_time_per_fish\"."
+input bite_time_per_fish_order_by {
+    flooredBiteTime: order_by
+    itemId: order_by
+    occurences: order_by
+}
+
+"Boolean expression to filter rows from the table \"bite_time_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input bite_time_per_fish_per_spot_bool_exp {
+    _and: [bite_time_per_fish_per_spot_bool_exp!]
+    _not: bite_time_per_fish_per_spot_bool_exp
+    _or: [bite_time_per_fish_per_spot_bool_exp!]
+    flooredBiteTime: Int_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    spot: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"bite_time_per_fish_per_spot\"."
+input bite_time_per_fish_per_spot_order_by {
+    flooredBiteTime: order_by
+    itemId: order_by
+    occurences: order_by
+    spot: order_by
+}
+
+"Boolean expression to filter rows from the table \"bite_time_per_fish_per_spot_per_bait\". All fields are combined with a logical 'AND'."
+input bite_time_per_fish_per_spot_per_bait_bool_exp {
+    _and: [bite_time_per_fish_per_spot_per_bait_bool_exp!]
+    _not: bite_time_per_fish_per_spot_per_bait_bool_exp
+    _or: [bite_time_per_fish_per_spot_per_bait_bool_exp!]
+    baitId: Int_comparison_exp
+    flooredBiteTime: Int_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    spot: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"bite_time_per_fish_per_spot_per_bait\"."
+input bite_time_per_fish_per_spot_per_bait_order_by {
+    baitId: order_by
+    flooredBiteTime: order_by
+    itemId: order_by
+    occurences: order_by
+    spot: order_by
+}
+
+"Streaming cursor of the table \"bite_time_per_fish_per_spot_per_bait\""
+input bite_time_per_fish_per_spot_per_bait_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: bite_time_per_fish_per_spot_per_bait_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input bite_time_per_fish_per_spot_per_bait_stream_cursor_value_input {
+    baitId: Int
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"Streaming cursor of the table \"bite_time_per_fish_per_spot\""
+input bite_time_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: bite_time_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input bite_time_per_fish_per_spot_stream_cursor_value_input {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"Streaming cursor of the table \"bite_time_per_fish\""
+input bite_time_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: bite_time_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input bite_time_per_fish_stream_cursor_value_input {
+    flooredBiteTime: Int
+    itemId: Int
+    occurences: bigint
+}
+
+"Boolean expression to filter rows from the table \"bnpc\". All fields are combined with a logical 'AND'."
+input bnpc_bool_exp {
+    _and: [bnpc_bool_exp!]
+    _not: bnpc_bool_exp
+    _or: [bnpc_bool_exp!]
+    bnpcBase: Int_comparison_exp
+    bnpcName: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"bnpc\"."
+input bnpc_order_by {
+    bnpcBase: order_by
+    bnpcName: order_by
+}
+
+"Streaming cursor of the table \"bnpc\""
+input bnpc_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: bnpc_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input bnpc_stream_cursor_value_input {
+    bnpcBase: Int
+    bnpcName: Int
+}
+
+"Boolean expression to filter rows from the table \"etimes_per_fish\". All fields are combined with a logical 'AND'."
+input etimes_per_fish_bool_exp {
+    _and: [etimes_per_fish_bool_exp!]
+    _not: etimes_per_fish_bool_exp
+    _or: [etimes_per_fish_bool_exp!]
+    etime: numeric_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+}
+
+"Ordering options when selecting data from \"etimes_per_fish\"."
+input etimes_per_fish_order_by {
+    etime: order_by
+    itemId: order_by
+    occurences: order_by
+}
+
+"Boolean expression to filter rows from the table \"etimes_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input etimes_per_fish_per_spot_bool_exp {
+    _and: [etimes_per_fish_per_spot_bool_exp!]
+    _not: etimes_per_fish_per_spot_bool_exp
+    _or: [etimes_per_fish_per_spot_bool_exp!]
+    etime: numeric_comparison_exp
+    fishEyes: Boolean_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    spot: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"etimes_per_fish_per_spot\"."
+input etimes_per_fish_per_spot_order_by {
+    etime: order_by
+    fishEyes: order_by
+    itemId: order_by
+    occurences: order_by
+    spot: order_by
+}
+
+"Streaming cursor of the table \"etimes_per_fish_per_spot\""
+input etimes_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: etimes_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input etimes_per_fish_per_spot_stream_cursor_value_input {
+    etime: numeric
+    fishEyes: Boolean
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"Streaming cursor of the table \"etimes_per_fish\""
+input etimes_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: etimes_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input etimes_per_fish_stream_cursor_value_input {
+    etime: numeric
+    itemId: Int
+    occurences: bigint
+}
+
+"Boolean expression to filter rows from the table \"fish_eyes_per_fish\". All fields are combined with a logical 'AND'."
+input fish_eyes_per_fish_bool_exp {
+    _and: [fish_eyes_per_fish_bool_exp!]
+    _not: fish_eyes_per_fish_bool_exp
+    _or: [fish_eyes_per_fish_bool_exp!]
+    fishEyes: Boolean_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+}
+
+"Ordering options when selecting data from \"fish_eyes_per_fish\"."
+input fish_eyes_per_fish_order_by {
+    fishEyes: order_by
+    itemId: order_by
+    occurences: order_by
+}
+
+"Boolean expression to filter rows from the table \"fish_eyes_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input fish_eyes_per_fish_per_spot_bool_exp {
+    _and: [fish_eyes_per_fish_per_spot_bool_exp!]
+    _not: fish_eyes_per_fish_per_spot_bool_exp
+    _or: [fish_eyes_per_fish_per_spot_bool_exp!]
+    fishEyes: Boolean_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    spot: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"fish_eyes_per_fish_per_spot\"."
+input fish_eyes_per_fish_per_spot_order_by {
+    fishEyes: order_by
+    itemId: order_by
+    occurences: order_by
+    spot: order_by
+}
+
+"Streaming cursor of the table \"fish_eyes_per_fish_per_spot\""
+input fish_eyes_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: fish_eyes_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input fish_eyes_per_fish_per_spot_stream_cursor_value_input {
+    fishEyes: Boolean
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"Streaming cursor of the table \"fish_eyes_per_fish\""
+input fish_eyes_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: fish_eyes_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input fish_eyes_per_fish_stream_cursor_value_input {
+    fishEyes: Boolean
+    itemId: Int
+    occurences: bigint
+}
+
+"Boolean expression to filter rows from the table \"fishingresults\". All fields are combined with a logical 'AND'."
+input fishingresults_bool_exp {
+    _and: [fishingresults_bool_exp!]
+    _not: fishingresults_bool_exp
+    _or: [fishingresults_bool_exp!]
+    baitId: Int_comparison_exp
+    biteTime: Int_comparison_exp
+    chum: Boolean_comparison_exp
+    date: timestamptz_comparison_exp
+    etime: numeric_comparison_exp
+    fishEyes: Boolean_comparison_exp
+    gathering: Int_comparison_exp
+    gp: Int_comparison_exp
+    hookset: Int_comparison_exp
+    hq: Boolean_comparison_exp
+    itemId: Int_comparison_exp
+    mapId: Int_comparison_exp
+    mooch: Boolean_comparison_exp
+    oceanTime: Int_comparison_exp
+    patience: Boolean_comparison_exp
+    perception: Int_comparison_exp
+    previousWeatherId: Int_comparison_exp
+    size: Int_comparison_exp
+    snagging: Boolean_comparison_exp
+    spot: Int_comparison_exp
+    trainId: String_comparison_exp
+    tug: Int_comparison_exp
+    userId: String_comparison_exp
+    weatherId: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"fishingresults\"."
+input fishingresults_order_by {
+    baitId: order_by
+    biteTime: order_by
+    chum: order_by
+    date: order_by
+    etime: order_by
+    fishEyes: order_by
+    gathering: order_by
+    gp: order_by
+    hookset: order_by
+    hq: order_by
+    itemId: order_by
+    mapId: order_by
+    mooch: order_by
+    oceanTime: order_by
+    patience: order_by
+    perception: order_by
+    previousWeatherId: order_by
+    size: order_by
+    snagging: order_by
+    spot: order_by
+    trainId: order_by
+    tug: order_by
+    userId: order_by
+    weatherId: order_by
+}
+
+"Streaming cursor of the table \"fishingresults\""
+input fishingresults_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: fishingresults_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input fishingresults_stream_cursor_value_input {
+    baitId: Int
+    biteTime: Int
+    chum: Boolean
+    date: timestamptz
+    etime: numeric
+    fishEyes: Boolean
+    gathering: Int
+    gp: Int
+    hookset: Int
+    hq: Boolean
+    itemId: Int
+    mapId: Int
+    mooch: Boolean
+    oceanTime: Int
+    patience: Boolean
+    perception: Int
+    previousWeatherId: Int
+    size: Int
+    snagging: Boolean
+    spot: Int
+    trainId: String
+    tug: Int
+    userId: String
+    weatherId: Int
+}
+
+"Boolean expression to filter rows from the table \"hooksets_per_fish\". All fields are combined with a logical 'AND'."
+input hooksets_per_fish_bool_exp {
+    _and: [hooksets_per_fish_bool_exp!]
+    _not: hooksets_per_fish_bool_exp
+    _or: [hooksets_per_fish_bool_exp!]
+    hookset: Int_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+}
+
+"Ordering options when selecting data from \"hooksets_per_fish\"."
+input hooksets_per_fish_order_by {
+    hookset: order_by
+    itemId: order_by
+    occurences: order_by
+}
+
+"Boolean expression to filter rows from the table \"hooksets_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input hooksets_per_fish_per_spot_bool_exp {
+    _and: [hooksets_per_fish_per_spot_bool_exp!]
+    _not: hooksets_per_fish_per_spot_bool_exp
+    _or: [hooksets_per_fish_per_spot_bool_exp!]
+    hookset: Int_comparison_exp
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    spot: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"hooksets_per_fish_per_spot\"."
+input hooksets_per_fish_per_spot_order_by {
+    hookset: order_by
+    itemId: order_by
+    occurences: order_by
+    spot: order_by
+}
+
+"Streaming cursor of the table \"hooksets_per_fish_per_spot\""
+input hooksets_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: hooksets_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input hooksets_per_fish_per_spot_stream_cursor_value_input {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+    spot: Int
+}
+
+"Streaming cursor of the table \"hooksets_per_fish\""
+input hooksets_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: hooksets_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input hooksets_per_fish_stream_cursor_value_input {
+    hookset: Int
+    itemId: Int
+    occurences: bigint
+}
+
+input jsonb_cast_exp {
+    String: String_comparison_exp
+}
+
+"Boolean expression to compare columns of type \"jsonb\". All fields are combined with logical 'AND'."
+input jsonb_comparison_exp {
+    _cast: jsonb_cast_exp
+    "is the column contained in the given json value"
+    _contained_in: jsonb
+    "does the column contain the given json value at the top level"
+    _contains: jsonb
+    _eq: jsonb
+    _gt: jsonb
+    _gte: jsonb
+    "does the string exist as a top-level key in the column"
+    _has_key: String
+    "do all of these strings exist as top-level keys in the column"
+    _has_keys_all: [String!]
+    "do any of these strings exist as top-level keys in the column"
+    _has_keys_any: [String!]
+    _in: [jsonb!]
+    _is_null: Boolean
+    _lt: jsonb
+    _lte: jsonb
+    _neq: jsonb
+    _nin: [jsonb!]
+}
+
+"Boolean expression to compare columns of type \"numeric\". All fields are combined with logical 'AND'."
+input numeric_comparison_exp {
+    _eq: numeric
+    _gt: numeric
+    _gte: numeric
+    _in: [numeric!]
+    _is_null: Boolean
+    _lt: numeric
+    _lte: numeric
+    _neq: numeric
+    _nin: [numeric!]
+}
+
+"Boolean expression to filter rows from the table \"snagging_per_fish\". All fields are combined with a logical 'AND'."
+input snagging_per_fish_bool_exp {
+    _and: [snagging_per_fish_bool_exp!]
+    _not: snagging_per_fish_bool_exp
+    _or: [snagging_per_fish_bool_exp!]
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    snagging: Boolean_comparison_exp
+}
+
+"Ordering options when selecting data from \"snagging_per_fish\"."
+input snagging_per_fish_order_by {
+    itemId: order_by
+    occurences: order_by
+    snagging: order_by
+}
+
+"Boolean expression to filter rows from the table \"snagging_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input snagging_per_fish_per_spot_bool_exp {
+    _and: [snagging_per_fish_per_spot_bool_exp!]
+    _not: snagging_per_fish_per_spot_bool_exp
+    _or: [snagging_per_fish_per_spot_bool_exp!]
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    snagging: Boolean_comparison_exp
+    spot: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"snagging_per_fish_per_spot\"."
+input snagging_per_fish_per_spot_order_by {
+    itemId: order_by
+    occurences: order_by
+    snagging: order_by
+    spot: order_by
+}
+
+"Streaming cursor of the table \"snagging_per_fish_per_spot\""
+input snagging_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: snagging_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input snagging_per_fish_per_spot_stream_cursor_value_input {
+    itemId: Int
+    occurences: bigint
+    snagging: Boolean
+    spot: Int
+}
+
+"Streaming cursor of the table \"snagging_per_fish\""
+input snagging_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: snagging_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input snagging_per_fish_stream_cursor_value_input {
+    itemId: Int
+    occurences: bigint
+    snagging: Boolean
+}
+
+"Boolean expression to filter rows from the table \"spots_per_fish\". All fields are combined with a logical 'AND'."
+input spots_per_fish_bool_exp {
+    _and: [spots_per_fish_bool_exp!]
+    _not: spots_per_fish_bool_exp
+    _or: [spots_per_fish_bool_exp!]
+    itemId: Int_comparison_exp
+    spot: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"spots_per_fish\"."
+input spots_per_fish_order_by {
+    itemId: order_by
+    spot: order_by
+}
+
+"Streaming cursor of the table \"spots_per_fish\""
+input spots_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: spots_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input spots_per_fish_stream_cursor_value_input {
+    itemId: Int
+    spot: Int
+}
+
+"Boolean expression to compare columns of type \"timestamptz\". All fields are combined with logical 'AND'."
+input timestamptz_comparison_exp {
+    _eq: timestamptz
+    _gt: timestamptz
+    _gte: timestamptz
+    _in: [timestamptz!]
+    _is_null: Boolean
+    _lt: timestamptz
+    _lte: timestamptz
+    _neq: timestamptz
+    _nin: [timestamptz!]
+}
+
+"Boolean expression to filter rows from the table \"tug_per_fish\". All fields are combined with a logical 'AND'."
+input tug_per_fish_bool_exp {
+    _and: [tug_per_fish_bool_exp!]
+    _not: tug_per_fish_bool_exp
+    _or: [tug_per_fish_bool_exp!]
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    tug: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"tug_per_fish\"."
+input tug_per_fish_order_by {
+    itemId: order_by
+    occurences: order_by
+    tug: order_by
+}
+
+"Boolean expression to filter rows from the table \"tug_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input tug_per_fish_per_spot_bool_exp {
+    _and: [tug_per_fish_per_spot_bool_exp!]
+    _not: tug_per_fish_per_spot_bool_exp
+    _or: [tug_per_fish_per_spot_bool_exp!]
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    spot: Int_comparison_exp
+    tug: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"tug_per_fish_per_spot\"."
+input tug_per_fish_per_spot_order_by {
+    itemId: order_by
+    occurences: order_by
+    spot: order_by
+    tug: order_by
+}
+
+"Streaming cursor of the table \"tug_per_fish_per_spot\""
+input tug_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: tug_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input tug_per_fish_per_spot_stream_cursor_value_input {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    tug: Int
+}
+
+"Streaming cursor of the table \"tug_per_fish\""
+input tug_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: tug_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input tug_per_fish_stream_cursor_value_input {
+    itemId: Int
+    occurences: bigint
+    tug: Int
+}
+
+"Boolean expression to compare columns of type \"uuid\". All fields are combined with logical 'AND'."
+input uuid_comparison_exp {
+    _eq: uuid
+    _gt: uuid
+    _gte: uuid
+    _in: [uuid!]
+    _is_null: Boolean
+    _lt: uuid
+    _lte: uuid
+    _neq: uuid
+    _nin: [uuid!]
+}
+
+"Boolean expression to filter rows from the table \"weather_transitions_per_fish\". All fields are combined with a logical 'AND'."
+input weather_transitions_per_fish_bool_exp {
+    _and: [weather_transitions_per_fish_bool_exp!]
+    _not: weather_transitions_per_fish_bool_exp
+    _or: [weather_transitions_per_fish_bool_exp!]
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    previousWeatherId: Int_comparison_exp
+    weatherId: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"weather_transitions_per_fish\"."
+input weather_transitions_per_fish_order_by {
+    itemId: order_by
+    occurences: order_by
+    previousWeatherId: order_by
+    weatherId: order_by
+}
+
+"Boolean expression to filter rows from the table \"weather_transitions_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input weather_transitions_per_fish_per_spot_bool_exp {
+    _and: [weather_transitions_per_fish_per_spot_bool_exp!]
+    _not: weather_transitions_per_fish_per_spot_bool_exp
+    _or: [weather_transitions_per_fish_per_spot_bool_exp!]
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    previousWeatherId: Int_comparison_exp
+    spot: Int_comparison_exp
+    weatherId: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"weather_transitions_per_fish_per_spot\"."
+input weather_transitions_per_fish_per_spot_order_by {
+    itemId: order_by
+    occurences: order_by
+    previousWeatherId: order_by
+    spot: order_by
+    weatherId: order_by
+}
+
+"Streaming cursor of the table \"weather_transitions_per_fish_per_spot\""
+input weather_transitions_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: weather_transitions_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input weather_transitions_per_fish_per_spot_stream_cursor_value_input {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    spot: Int
+    weatherId: Int
+}
+
+"Streaming cursor of the table \"weather_transitions_per_fish\""
+input weather_transitions_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: weather_transitions_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input weather_transitions_per_fish_stream_cursor_value_input {
+    itemId: Int
+    occurences: bigint
+    previousWeatherId: Int
+    weatherId: Int
+}
+
+"Boolean expression to filter rows from the table \"weathers_per_fish\". All fields are combined with a logical 'AND'."
+input weathers_per_fish_bool_exp {
+    _and: [weathers_per_fish_bool_exp!]
+    _not: weathers_per_fish_bool_exp
+    _or: [weathers_per_fish_bool_exp!]
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    weatherId: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"weathers_per_fish\"."
+input weathers_per_fish_order_by {
+    itemId: order_by
+    occurences: order_by
+    weatherId: order_by
+}
+
+"Boolean expression to filter rows from the table \"weathers_per_fish_per_spot\". All fields are combined with a logical 'AND'."
+input weathers_per_fish_per_spot_bool_exp {
+    _and: [weathers_per_fish_per_spot_bool_exp!]
+    _not: weathers_per_fish_per_spot_bool_exp
+    _or: [weathers_per_fish_per_spot_bool_exp!]
+    itemId: Int_comparison_exp
+    occurences: bigint_comparison_exp
+    spot: Int_comparison_exp
+    weatherId: Int_comparison_exp
+}
+
+"Ordering options when selecting data from \"weathers_per_fish_per_spot\"."
+input weathers_per_fish_per_spot_order_by {
+    itemId: order_by
+    occurences: order_by
+    spot: order_by
+    weatherId: order_by
+}
+
+"Streaming cursor of the table \"weathers_per_fish_per_spot\""
+input weathers_per_fish_per_spot_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: weathers_per_fish_per_spot_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input weathers_per_fish_per_spot_stream_cursor_value_input {
+    itemId: Int
+    occurences: bigint
+    spot: Int
+    weatherId: Int
+}
+
+"Streaming cursor of the table \"weathers_per_fish\""
+input weathers_per_fish_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: weathers_per_fish_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input weathers_per_fish_stream_cursor_value_input {
+    itemId: Int
+    occurences: bigint
+    weatherId: Int
+}
